@@ -1,0 +1,4 @@
+static/
+media/
+backup
+db.sqlite3

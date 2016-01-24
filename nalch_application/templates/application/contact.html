@@ -1,0 +1,24 @@
+{% extends 'application/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row spacey">
+      <div class="col-xs-3 col-md-2">
+          <img src="{% static 'application/img/ksgross.png' %}" alt="" class="img img-full">
+      </div>
+      <div class="col-xs-12 col-md-8">
+          <blockquote>
+              <p>{{ applicant.user.first_name }} {{ applicant.user.last_name }}
+                <small><cite>{{ applicant.address }}<i class="icon-map-marker"></i></cite></small>
+                  <ul class="contactdetails">
+                  {% for detail in applicant.contactdetail_set.all %}
+                    <li><span class="glyphicon glyphicon-{{ detail.icon }}" aria-hidden="true"></span>{{ detail.text }}</li>
+                  {% endfor %}
+                  </ul>
+                </p>
+          </blockquote>
+      </div>
+    </div>
+
+{% endblock %}
