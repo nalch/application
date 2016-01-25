@@ -1,0 +1,118 @@
+{% extends 'application/base.html' %}
+{% load i18n staticfiles %}
+
+{% block extrahead %}
+<script src="{% static 'application/js/language-switcher.js' %}"></script>
+<link rel="stylesheet" href="{% static 'application/css/blueimp-gallery.min.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="spacey">
+    <div class="well well-sm well-info center">
+        {% blocktrans with mail=applicant.user.email %}This string will have {{ mail }} inside.{% endblocktrans %}
+    </div>
+</div>
+
+<table id="references" class="center spacey">
+<tr>
+  <th>Projekt</th>
+  <th>Java</th>
+  <th>Python</th>
+  <th>Ruby</th>
+  <th><center>Server-<br/>administration</center></th>
+  <th>Datenbanken</th>
+  <th>XML</th>
+  <th>Latex</th>
+</tr>
+{% for reference in references %}
+<tr class="{% cycle '' 'alt' %}">
+  <td><a href="#{{ reference.public_name }}">{{ reference.short_name }}</a></td>
+  <td></td>
+  <td><div class="void-div icon-check center"/></td>
+  <td><div class="void-div icon-check center"/></td>
+  <td><div class="void-div icon-thumbs-up center"/></td>
+  <td><div class="void-div icon-check center"/></td>
+  <td/>
+  <td><div class="void-div icon-thumbs-up center"/></td>
+</tr>
+{% endfor %}
+
+<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-thumbs-up"></div><div class="legend">{% trans 'advanced knowledge' %}</div></td></tr>
+<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-check"></div><div class="legend">{% trans 'working knowledge' %}</div></td></tr>
+<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-wrench"></div><div class="legend">{% trans 'basic knowledge' %}</div></td></tr>
+</table>
+
+
+<h2>{% trans 'Projects' %}</h2>
+
+{% for reference in references %}
+	<div id="{{ reference.public_name }}" class="container spacey">
+
+      <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><b>{{ reference.name }}</b></h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
+                    <div class="col-md-9">
+                        {{ reference.description }}
+                        <br/><br/>
+                        Download des schriftlichen Teiles der Arbeit sowie der Abschlusspr&auml;sentation:<br/>
+                        <ul>
+                        	<li><a href="documents/diplom-00-index-v018-elek1.pdf">Diplomarbeit</a></li>
+                        	<li><a href="documents/diplom-presentation.pdf">Abschlusspr&auml;sentation</a></li>
+                        </ul>
+                        <hr/>
+                        {% trans 'Tags' %}:
+			            <span class="label label-primary">Python</span>
+                        <ul>
+                            <li>Verteilte Serversysteme, HTTP-Streaming, HTML5-Webworker, Monitoring</li>
+                        </ul>
+                        Technologien:
+                        <ul>
+                            <li>Python, Django, Ruby, HTML5, Javascript, Adobe Flash, ElasticSearch, Logstash, Kibana, Saltstack</li>
+                        </ul>
+                    </div>
+              </div>
+              <div class="row">
+						<div id="{{ reference.public_name }}-gallery" class="gallery spacey center">
+                            {% for image in reference.images.all %}
+    						<a href="{{ image.image.url }}" title="{{ image.title }}"><img src="{{ image.thumbnail.url }}" alt="{{ image.title }}"/></a>
+    						{% endfor %}
+						</div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+{% block page_end %}
+
+   <script>
+
+		var galleries = [
+		{% for reference in references %}
+		'{{ reference.public_name }}',
+		{% endfor %}
+		];
+
+		for (var gal in galleries) {
+			document.getElementById(galleries[gal]+'-gallery').onclick = function (event) {
+			    event = event || window.event;
+    			var target = event.target || event.srcElement,
+        		    link = target.src ? target.parentNode : target,
+        		    options = {index: link, event: event},
+        		    links = this.getElementsByTagName('a');
+    			blueimp.Gallery(links, options);
+			};
+
+		}
+
+	</script>
+
+{% endblock %}

@@ -17,12 +17,24 @@ def get_shared_context(request, applicant, active='index'):
 
 
 def index(request, applicant):
-    return render_to_response('application/index.html', get_shared_context(request, applicant))
+    return render_to_response(
+            'application/index.html',
+            get_shared_context(request, applicant),
+            context_instance=RequestContext(request)
+    )
 
 
 def contact(request, applicant):
-    return render_to_response('application/contact.html', get_shared_context(request, applicant, 'contact'), context_instance=RequestContext(request))
+    return render_to_response(
+            'application/contact.html',
+            get_shared_context(request, applicant, 'contact'),
+            context_instance=RequestContext(request)
+    )
 
 
 def references(request, applicant):
-    return render_to_response('application/references.html', get_shared_context(request, applicant, 'references'))
+    return render_to_response(
+            'application/references.html',
+            get_shared_context(request, applicant, 'references'),
+            context_instance=RequestContext(request)
+    )

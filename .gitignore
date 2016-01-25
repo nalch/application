@@ -2,3 +2,4 @@ static/
 media/
 backup
 db.sqlite3
+*.pyc

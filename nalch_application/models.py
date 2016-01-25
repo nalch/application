@@ -7,6 +7,7 @@ class Project(models.Model):
     model to represent projects with names, descriptions, images and tags
     """
     name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=25)
     description = models.TextField()
     started = models.DateField('date started', null=True, blank=True)
     ended = models.DateField('date ended', null=True, blank=True)
@@ -15,6 +16,10 @@ class Project(models.Model):
 
     user = models.ForeignKey(User)
 
+    @property
+    def public_name(self):
+        return self.short_name_en
+
     def __unicode__(self):
         """
         return the project's name
@@ -22,6 +27,13 @@ class Project(models.Model):
         :rtype str
         """
         return self.name
+
+
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name='images')
+    title = models.CharField(max_length=500)
+    image = models.ImageField()
+    thumbnail = models.ImageField()
 
 
 class Applicant(models.Model):

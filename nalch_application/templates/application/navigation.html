@@ -9,51 +9,51 @@
                 <span class="icon-bar"></span>
             </button>
             <!--<span class="navbar-brand">-->
-                <!--<img alt="brand" src="{% static 'application/img/ks-small.png' %}">-->
+            <!--<img alt="brand" src="{% static 'application/img/ks-small.png' %}">-->
             <!--</span>-->
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li {% if active == 'index' %}class="active"{% endif %}><a href="{% url 'index' applicant.user.username %}">{% trans 'Home' %}</a></li>
-                <li {% if active == 'contact' %}class="active"{% endif %}><a href="{% url 'contact' applicant.user.username %}">{% trans 'Contact' %}</a></li>
+                <li {% if active == 'index' %}class="active"{% endif %}>
+                    <a href="{% url 'index' applicant.user.username %}">{% trans 'Home' %}</a>
+                </li>
+                <li {% if active == 'contact' %}class="active"{% endif %}>
+                    <a href="{% url 'contact' applicant.user.username %}">{% trans 'Contact' %}</a>
+                </li>
                 <li class="{% if active == 'references' %}active{% endif %} dropdown">
-                    <a href="{% url 'references' applicant.user.username %}" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="{% url 'references' applicant.user.username %}" class="dropdown-toggle"
+                       data-toggle="dropdown">
                         {% trans 'References' %}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'references' applicant.user.username %}">{% trans 'Overview' %}</a></li>
-                        <li><hr/></li>
+                        <li>
+                            <hr/>
+                        </li>
                         {% for reference in references %}
-                            <li><a href="{% url 'references' applicant.user.username %}#{{ reference.pk }}">{{ reference.name }}</a></li>
+                            <li><a href="{% url 'references' applicant.user.username %}#{{ reference.public_name }}">{{ reference.short_name }}</a></li>
                         {% endfor %}
-                        <!--<li><a href="references.html#loadtest">Lasttest</a></li>-->
-                        <!--<li><a href="references.html#guery">Guery</a></li>-->
-                        <!--<li><a href="references.html#cpprakto">CpPraktomat</a></li>-->
-                        <!--<li><a href="references.html#restservice">Restservice</a></li>-->
-                        <!--<li><a href="references.html#mosaiksolver">MosaikSolver</a></li>-->
-                        <!--<li><a href="references.html#3dpdf">3D-PDF</a></li>-->
-                        <!--<li><a href="references.html#stskript">&Uuml;bungsskript</a></li>-->
                     </ul>
                 </li>
             </ul>
 
-              <form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}
-                  <div class="form-group">
-                  <input name="next" type="hidden" value="{{ redirect_to }}" />
+            <form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}
+                <div class="form-group">
+                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
                     <select class="form-control" name="language">
-              {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %}
-                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                    <a href="">{{ language.name_local }} ({{ language.code }})</a>
-                </option>
-              {% endfor %}
-                        </select>
-                      </div>
-              </form>
-        </li>
-      </ul>
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                            <a href="">{{ language.name_local }} ({{ language.code }})</a>
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+            </li>
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>

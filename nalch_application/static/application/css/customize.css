@@ -85,3 +85,7 @@ ul.contactdetails {
 .contactdetails li .glyphicon {
     padding-right: 5px;
 }
+
+.well-info {
+    width: 70%;
+}
