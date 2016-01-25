@@ -21,15 +21,12 @@
       <script src="{% static 'application/bootstrap/js/bootstrap/html5shiv.js' %}"></script>
       <script src="{% static 'application/bootstrap/js/bootstrap/respond.min.js' %}"></script>
     <![endif]-->
+    <script src="{% static 'application/js/language-switcher.js' %}"></script>
 
     {% block extrahead %}
     {% endblock %}
 </head>
 <body>
-
-<!--{% block i18n %}-->
-<!--{% include 'set_language.html' %}-->
-<!--{% endblock %}-->
 
 {% block navigation%}
 {% include 'application/navigation.html' %}

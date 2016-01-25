@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-24 19:32+0000\n"
+"POT-Creation-Date: 2016-01-25 19:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: application/settings.py:62
+#: application/settings.py:63
 msgid "German"
 msgstr "Deutsch"
 
-#: application/settings.py:63
+#: application/settings.py:64
 msgid "English"
 msgstr "Englisch"
 
-#: nalch_application/templates/application/navigation.html:15
+#: nalch_application/templates/application/navigation.html:17
 msgid "Home"
 msgstr "Home"
 
-#: nalch_application/templates/application/navigation.html:16
+#: nalch_application/templates/application/navigation.html:18
 msgid "Contact"
 msgstr "Kontakt"
 
-#: nalch_application/templates/application/navigation.html:19
-msgid "references"
+#: nalch_application/templates/application/navigation.html:21
+#, fuzzy
+#| msgid "references"
+msgid "References"
 msgstr "Referenzen"
 
-#: nalch_application/templates/application/navigation.html:22
+#: nalch_application/templates/application/navigation.html:24
 msgid "Overview"
 msgstr "Überblick"

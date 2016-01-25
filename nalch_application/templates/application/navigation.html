@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -8,7 +8,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"></a>
+            <!--<span class="navbar-brand">-->
+                <!--<img alt="brand" src="{% static 'application/img/ks-small.png' %}">-->
+            <!--</span>-->
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -16,7 +18,7 @@
                 <li {% if active == 'contact' %}class="active"{% endif %}><a href="{% url 'contact' applicant.user.username %}">{% trans 'Contact' %}</a></li>
                 <li class="{% if active == 'references' %}active{% endif %} dropdown">
                     <a href="{% url 'references' applicant.user.username %}" class="dropdown-toggle" data-toggle="dropdown">
-                        {% trans 'references' %}<b class="caret"></b>
+                        {% trans 'References' %}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'references' applicant.user.username %}">{% trans 'Overview' %}</a></li>
@@ -34,6 +36,24 @@
                     </ul>
                 </li>
             </ul>
+
+              <form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}
+                  <div class="form-group">
+                  <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    <select class="form-control" name="language">
+              {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                    <a href="">{{ language.name_local }} ({{ language.code }})</a>
+                </option>
+              {% endfor %}
+                        </select>
+                      </div>
+              </form>
+        </li>
+      </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>

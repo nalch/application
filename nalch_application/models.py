@@ -42,10 +42,11 @@ class ContactDetail(models.Model):
             ('bullhorn', 'Megaphone'),
             ('envelope', 'Umschlag'),
             ('globe', 'Weltkugel'),
-            ('gift', 'Geschenk')
+            ('gift', 'Geschenk'),
+            ('earphone', 'Telefon'),
         ],
         max_length=200,
-        help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.'
+        help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
     )
     text = models.TextField(default='')
     applicant = models.ForeignKey(Applicant, blank=True, null=True)
