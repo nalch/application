@@ -2,7 +2,6 @@
 {% load i18n staticfiles %}
 
 {% block extrahead %}
-<script src="{% static 'application/js/language-switcher.js' %}"></script>
 <link rel="stylesheet" href="{% static 'application/css/blueimp-gallery.min.css' %}">
 {% endblock %}
 
@@ -89,16 +88,28 @@
     </div>
 {% endfor %}
 
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
 {% endblock %}
 
 {% block page_end %}
 
-   <script>
+    <script src="{% static 'application/js/blueimp-gallery.min.js' %}"></script>
+    <script>
 
-		var galleries = [
-		{% for reference in references %}
-		'{{ reference.public_name }}',
-		{% endfor %}
+	    var galleries = [
+            {% for reference in references %}
+                '{{ reference.public_name }}',
+            {% endfor %}
 		];
 
 		for (var gal in galleries) {
