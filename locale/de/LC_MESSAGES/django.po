@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-25 20:24+0000\n"
-"PO-Revision-Date: 2016-01-25 21:26+0100\n"
+"POT-Creation-Date: 2016-01-27 20:19+0000\n"
+"PO-Revision-Date: 2016-01-27 21:21+0100\n"
 "Last-Translator: Kristian Scholze <Scholze.Kristian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,26 +25,58 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#: nalch_application/templates/application/navigation.html:17
+#: nalch_application/models.py:78
+#: nalch_application/templates/application/references.html:42
+msgid "basic knowledge"
+msgstr "Grundwissen"
+
+#: nalch_application/models.py:79
+#: nalch_application/templates/application/references.html:41
+msgid "working knowledge"
+msgstr "Fortgeschritten"
+
+#: nalch_application/models.py:80
+#: nalch_application/templates/application/references.html:40
+msgid "advanced knowledge"
+msgstr "Expertenwissen"
+
+#: nalch_application/templates/application/navigation.html:18
 msgid "Home"
 msgstr "Home"
 
-#: nalch_application/templates/application/navigation.html:18
+#: nalch_application/templates/application/navigation.html:21
 msgid "Contact"
 msgstr "Kontakt"
 
-#: nalch_application/templates/application/navigation.html:21
+#: nalch_application/templates/application/navigation.html:26
 msgid "References"
 msgstr "Referenzen"
 
-#: nalch_application/templates/application/navigation.html:24
+#: nalch_application/templates/application/navigation.html:29
 msgid "Overview"
 msgstr "Überblick"
 
-#: nalch_application/templates/application/references.html:8
+#: nalch_application/templates/application/references.html:12
+#, python-format
 msgid "This string will have %(mail)s inside."
 msgstr ""
 "Diese Seite enthält einen kurzen Abriss einiger Projekte, an deren "
 "Entwicklung ich beteiligt bin oder war. Natürlich freue ich mich sehr, "
 "konkretere Details <a href=\"mailto:%(mail)s\">per Mail</a> oder in einem "
 "persönlichen Gespräch zu erörtern."
+
+#: nalch_application/templates/application/references.html:46
+msgid "Projects"
+msgstr "Projekte"
+
+#: nalch_application/templates/application/references.html:62
+msgid "Attachments"
+msgstr "Anhänge"
+
+#: nalch_application/templates/application/references.html:69
+msgid "Tags"
+msgstr "Schlagworte"
+
+#: nalch_application/templates/application/references.html:74
+msgid "Technologies"
+msgstr "Technologien"
