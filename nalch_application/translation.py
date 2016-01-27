@@ -5,9 +5,11 @@ from modeltranslation.translator import (
 
 from .models import (
     Applicant,
+    Attachment,
     ContactDetail,
     Project,
-    ProjectImage
+    ProjectImage,
+    Tag,
 )
 
 
@@ -26,7 +28,18 @@ class ProjectTranslationOptions(TranslationOptions):
 class ProjectImageTranslationOptions(TranslationOptions):
     fields = ('title',)
 
+
+class AttachmentTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+
+class TagTranslationOptions(TranslationOptions):
+    fields = ('name',)
+
+
 translator.register(Applicant, ApplicantTranslationOptions)
 translator.register(ContactDetail, ContactDetailTranslationOptions)
 translator.register(Project, ProjectTranslationOptions)
 translator.register(ProjectImage, ProjectImageTranslationOptions)
+translator.register(Attachment, AttachmentTranslationOptions)
+translator.register(Tag, TagTranslationOptions)

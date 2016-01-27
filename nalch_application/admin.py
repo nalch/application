@@ -1,12 +1,17 @@
 from django.contrib import admin
 
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import (
+    TranslationAdmin,
+    TranslationTabularInline
+)
 
 from .models import (
     Applicant,
+    Attachment,
     ContactDetail,
     Project,
-    ProjectImage
+    ProjectImage,
+    Tag,
 )
 
 
@@ -24,14 +29,30 @@ class ContactDetailAdmin(TranslationAdmin):
     pass
 
 
-class ProjectImageInline(admin.TabularInline):
+class ProjectImageInline(TranslationTabularInline):
     model = ProjectImage
     extra = 0
 
 
+class AttachmentInline(TranslationTabularInline):
+    model = Attachment
+    extra = 0
+
+
+class TagInline(TranslationTabularInline):
+    model = Tag
+    extra = 0
+
+
+class TagAdmin(TranslationAdmin):
+    pass
+
+
 class ProjectAdmin(TranslationAdmin):
-    inlines = [ProjectImageInline, ]
+    inlines = [ProjectImageInline, AttachmentInline, ]
 
 
+admin.site.register(Tag, TagAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
+

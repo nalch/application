@@ -71,6 +71,10 @@ body {
 	display: inline;	
 }
 
+.legendrow td div.legend {
+    padding-left: 5px;
+}
+
 ul.contactdetails {
     padding-left: 0;
 }

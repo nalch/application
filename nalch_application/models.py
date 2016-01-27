@@ -2,6 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Project(models.Model):
     """
     model to represent projects with names, descriptions, images and tags
@@ -9,10 +16,9 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     short_name = models.CharField(max_length=25)
     description = models.TextField()
-    started = models.DateField('date started', null=True, blank=True)
-    ended = models.DateField('date ended', null=True, blank=True)
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
+    tags = models.ManyToManyField(Tag)
 
     user = models.ForeignKey(User)
 
@@ -27,6 +33,12 @@ class Project(models.Model):
         :rtype str
         """
         return self.name
+
+
+class Attachment(models.Model):
+    name = models.CharField(max_length=200)
+    file = models.FileField()
+    project = models.ForeignKey(Project)
 
 
 class ProjectImage(models.Model):

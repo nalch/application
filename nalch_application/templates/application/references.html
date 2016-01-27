@@ -16,24 +16,20 @@
 <table id="references" class="center spacey">
 <tr>
   <th>Projekt</th>
-  <th>Java</th>
-  <th>Python</th>
-  <th>Ruby</th>
-  <th><center>Server-<br/>administration</center></th>
-  <th>Datenbanken</th>
-  <th>XML</th>
-  <th>Latex</th>
+    {% for tag in Tag.objects.all %}
+  <th>{{ tag }}</th>
+    {% endfor %}
 </tr>
 {% for reference in references %}
 <tr class="{% cycle '' 'alt' %}">
   <td><a href="#{{ reference.public_name }}">{{ reference.short_name }}</a></td>
   <td></td>
-  <td><div class="void-div icon-check center"/></td>
-  <td><div class="void-div icon-check center"/></td>
-  <td><div class="void-div icon-thumbs-up center"/></td>
-  <td><div class="void-div icon-check center"/></td>
-  <td/>
-  <td><div class="void-div icon-thumbs-up center"/></td>
+  <td><div class="void-div icon-check center"></div></td>
+  <td><div class="void-div icon-check center"></div></td>
+  <td><div class="void-div icon-thumbs-up center"></div></td>
+  <td><div class="void-div icon-check center"></div></td>
+  <td></td>
+  <td><div class="void-div icon-thumbs-up center"></div></td>
 </tr>
 {% endfor %}
 
@@ -56,23 +52,26 @@
                 <div class="row">
                     <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
                     <div class="col-md-9">
-                        {{ reference.description }}
+                        {{ reference.description|safe }}
                         <br/><br/>
                         Download des schriftlichen Teiles der Arbeit sowie der Abschlusspr&auml;sentation:<br/>
+                        {% trans 'Attachments' %}
                         <ul>
-                        	<li><a href="documents/diplom-00-index-v018-elek1.pdf">Diplomarbeit</a></li>
-                        	<li><a href="documents/diplom-presentation.pdf">Abschlusspr&auml;sentation</a></li>
+                            {% for attachment in reference.attachment_set.all %}
+                        	    <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
+                            {% endfor %}
                         </ul>
                         <hr/>
-                        {% trans 'Tags' %}:
-			            <span class="label label-primary">Python</span>
-                        <ul>
-                            <li>Verteilte Serversysteme, HTTP-Streaming, HTML5-Webworker, Monitoring</li>
-                        </ul>
-                        Technologien:
-                        <ul>
-                            <li>Python, Django, Ruby, HTML5, Javascript, Adobe Flash, ElasticSearch, Logstash, Kibana, Saltstack</li>
-                        </ul>
+                        {% trans 'Tags' %}<br/>
+                        {% for tag in reference.tags.all %}
+			            <span class="label label-primary">{{ tag }}</span>
+                        {% endfor %}<br/>
+                        {% trans 'Technologies' %}<br/>
+                        {% for tech in reference.technologies.all %}
+                        <!--<ul>-->
+                            <!--<li>Python, Django, Ruby, HTML5, Javascript, Adobe Flash, ElasticSearch, Logstash, Kibana, Saltstack</li>-->
+                        <!--</ul>-->
+                        {% endfor %}
                     </div>
               </div>
               <div class="row">
