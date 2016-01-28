@@ -64,13 +64,11 @@
                         <hr/>
                         {% trans 'Tags' %}<br/>
                         {% for tag in reference.tags.all %}
-			            <span class="label label-primary">{{ tag }}</span>
+			            <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
                         {% endfor %}<br/>
                         {% trans 'Technologies' %}<br/>
                         {% for tech in reference.technologies.all %}
-                        <!--<ul>-->
-                            <!--<li>Python, Django, Ruby, HTML5, Javascript, Adobe Flash, ElasticSearch, Logstash, Kibana, Saltstack</li>-->
-                        <!--</ul>-->
+                            {{ tech }}
                         {% endfor %}
                     </div>
               </div>

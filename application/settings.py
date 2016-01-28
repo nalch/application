@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'nalch_application',
     'modeltranslation',
+    'colorful',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
