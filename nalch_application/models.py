@@ -2,6 +2,7 @@ from colorful.fields import RGBColorField
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class TranslatableNameMixin(models.Model):
@@ -10,6 +11,25 @@ class TranslatableNameMixin(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        abstract = True
+
+
+class IconMixin(models.Model):
+    icon = models.CharField(
+        default='',
+        choices=[
+            ('home', 'Haus'),
+            ('bullhorn', 'Megaphone'),
+            ('envelope', 'Umschlag'),
+            ('globe', 'Weltkugel'),
+            ('gift', 'Geschenk'),
+            ('earphone', 'Telefon'),
+        ],
+        max_length=200,
+        help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
+    )
 
     class Meta:
         abstract = True
@@ -57,21 +77,26 @@ class ProjectImage(TranslatableNameMixin):
     thumbnail = models.ImageField()
 
 
-class ContactDetail(TranslatableNameMixin):
-    icon = models.CharField(
-        default='',
-        choices=[
-            ('home', 'Haus'),
-            ('bullhorn', 'Megaphone'),
-            ('envelope', 'Umschlag'),
-            ('globe', 'Weltkugel'),
-            ('gift', 'Geschenk'),
-            ('earphone', 'Telefon'),
-        ],
-        max_length=200,
-        help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
-    )
+class ContactDetail(TranslatableNameMixin, IconMixin):
     applicant = models.ForeignKey(Applicant, blank=True, null=True)
 
     def __unicode__(self):
         return '%s: %s' % (self.applicant, self.text)
+
+
+class KnowledgeLevel(IconMixin):
+    weight = models.CharField(
+        default='',
+        choices=[
+            ('basic', _('basic knowledge')),
+            ('working', _('working knowledge')),
+            ('advanced', _('advanced knowledge')),
+        ],
+        max_length=200,
+    )
+
+
+class WeightedTag(models.Model):
+    tag = models.ForeignKey(Tag)
+    weight = models.ForeignKey(KnowledgeLevel)
+    project = models.ForeignKey(Project)

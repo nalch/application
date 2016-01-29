@@ -9,9 +9,11 @@ from .models import (
     Applicant,
     Attachment,
     ContactDetail,
+    KnowledgeLevel,
     Project,
     ProjectImage,
     Tag,
+    WeightedTag,
 )
 
 
@@ -48,11 +50,21 @@ class TagAdmin(TranslationAdmin):
     pass
 
 
+class KnowledgeLevelAdmin(admin.ModelAdmin):
+    model = KnowledgeLevel
+    extra = 0
+
+
+class WeightedTagInline(admin.TabularInline):
+    model = WeightedTag
+    extra = 0
+
+
 class ProjectAdmin(TranslationAdmin):
-    inlines = [ProjectImageInline, AttachmentInline, ]
+    inlines = [WeightedTagInline, ProjectImageInline, AttachmentInline, ]
 
 
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
-
+admin.site.register(KnowledgeLevel, KnowledgeLevelAdmin)
