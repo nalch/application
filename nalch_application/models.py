@@ -4,51 +4,19 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Tag(models.Model):
+class TranslatableNameMixin(models.Model):
+    name_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        abstract = True
+
+
+class Tag(TranslatableNameMixin):
     color = RGBColorField()
-
-    def __unicode__(self):
-        return self.name
-
-
-class Project(models.Model):
-    """
-    model to represent projects with names, descriptions, images and tags
-    """
-    name = models.CharField(max_length=200)
-    short_name = models.CharField(max_length=25)
-    description = models.TextField()
-    title_thumbnail = models.ImageField()
-    publish = models.BooleanField(default=True)
-    tags = models.ManyToManyField(Tag)
-
-    user = models.ForeignKey(User)
-
-    @property
-    def public_name(self):
-        return self.short_name_en
-
-    def __unicode__(self):
-        """
-        return the project's name
-        :return: project's name
-        :rtype str
-        """
-        return self.name
-
-
-class Attachment(models.Model):
-    name = models.CharField(max_length=200)
-    file = models.FileField()
-    project = models.ForeignKey(Project)
-
-
-class ProjectImage(models.Model):
-    project = models.ForeignKey(Project, related_name='images')
-    title = models.CharField(max_length=500)
-    image = models.ImageField()
-    thumbnail = models.ImageField()
 
 
 class Applicant(models.Model):
@@ -61,7 +29,35 @@ class Applicant(models.Model):
         return self.user.username
 
 
-class ContactDetail(models.Model):
+class Project(TranslatableNameMixin):
+    """
+    model to represent projects with names, descriptions, images and tags
+    """
+    short_name = models.CharField(max_length=25)
+    description = models.TextField()
+    title_thumbnail = models.ImageField()
+    publish = models.BooleanField(default=True)
+    tags = models.ManyToManyField(Tag)
+
+    user = models.ForeignKey(Applicant)
+
+    @property
+    def public_name(self):
+        return self.short_name_en
+
+
+class Attachment(TranslatableNameMixin):
+    file = models.FileField()
+    project = models.ForeignKey(Project)
+
+
+class ProjectImage(TranslatableNameMixin):
+    project = models.ForeignKey(Project, related_name='images')
+    image = models.ImageField()
+    thumbnail = models.ImageField()
+
+
+class ContactDetail(TranslatableNameMixin):
     icon = models.CharField(
         default='',
         choices=[
@@ -75,7 +71,6 @@ class ContactDetail(models.Model):
         max_length=200,
         help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
     )
-    text = models.TextField(default='')
     applicant = models.ForeignKey(Applicant, blank=True, null=True)
 
     def __unicode__(self):

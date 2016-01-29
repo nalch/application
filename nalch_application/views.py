@@ -11,7 +11,7 @@ def get_shared_context(request, applicant, active='index'):
     context = {
         'active': active,
         'applicant': Applicant.objects.get(user__username=applicant),
-        'references': Project.objects.filter(publish=True, user__username=applicant),
+        'references': Project.objects.filter(publish=True, user__user__username=applicant),
     }
     return context
 

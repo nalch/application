@@ -10,33 +10,39 @@ from .models import (
     Project,
     ProjectImage,
     Tag,
+    TranslatableNameMixin,
 )
+
+
+class TNMTranslationOptions(TranslationOptions):
+    fields = ('name', )
 
 
 class ApplicantTranslationOptions(TranslationOptions):
     fields = ('address',)
 
 
-class ContactDetailTranslationOptions(TranslationOptions):
-    fields = ('text',)
+class ContactDetailTranslationOptions(TNMTranslationOptions):
+    pass
 
 
-class ProjectTranslationOptions(TranslationOptions):
-    fields = ('name', 'short_name', 'description',)
+class ProjectTranslationOptions(TNMTranslationOptions):
+    fields = ('short_name', 'description', )
 
 
-class ProjectImageTranslationOptions(TranslationOptions):
-    fields = ('title',)
+class ProjectImageTranslationOptions(TNMTranslationOptions):
+    pass
 
 
-class AttachmentTranslationOptions(TranslationOptions):
-    fields = ('name',)
+class AttachmentTranslationOptions(TNMTranslationOptions):
+    pass
 
 
-class TagTranslationOptions(TranslationOptions):
-    fields = ('name',)
+class TagTranslationOptions(TNMTranslationOptions):
+    pass
 
 
+translator.register(TranslatableNameMixin, TNMTranslationOptions)
 translator.register(Applicant, ApplicantTranslationOptions)
 translator.register(ContactDetail, ContactDetailTranslationOptions)
 translator.register(Project, ProjectTranslationOptions)
