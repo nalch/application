@@ -95,8 +95,14 @@ class KnowledgeLevel(IconMixin):
         max_length=200,
     )
 
+    def __unicode__(self):
+        return self.weight
+
 
 class WeightedTag(models.Model):
     tag = models.ForeignKey(Tag)
     weight = models.ForeignKey(KnowledgeLevel)
     project = models.ForeignKey(Project)
+
+    def __unicode__(self):
+        return '%s@%s' % (self.tag.name, self.weight)

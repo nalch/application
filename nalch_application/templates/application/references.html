@@ -64,7 +64,7 @@
                         <hr/>
                         {% trans 'Tags' %}<br/>
                         {% for tag in reference.tags.all %}
-			            <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
+			                <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
                         {% endfor %}<br/>
                         {% trans 'Technologies' %}<br/>
                         {% for tech in reference.technologies.all %}
