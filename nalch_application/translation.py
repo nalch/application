@@ -7,6 +7,7 @@ from .models import (
     Applicant,
     Attachment,
     ContactDetail,
+    Group,
     Project,
     ProjectImage,
     Tag,
@@ -42,6 +43,10 @@ class TagTranslationOptions(TNMTranslationOptions):
     pass
 
 
+class GroupTranslationOptions(TNMTranslationOptions):
+    pass
+
+
 translator.register(TranslatableNameMixin, TNMTranslationOptions)
 translator.register(Applicant, ApplicantTranslationOptions)
 translator.register(ContactDetail, ContactDetailTranslationOptions)
@@ -49,3 +54,4 @@ translator.register(Project, ProjectTranslationOptions)
 translator.register(ProjectImage, ProjectImageTranslationOptions)
 translator.register(Attachment, AttachmentTranslationOptions)
 translator.register(Tag, TagTranslationOptions)
+translator.register(Group, GroupTranslationOptions)

@@ -1,0 +1,72 @@
+[
+{
+    "fields": {
+        "name_en": "Python",
+        "color": "#f98801",
+        "name_de": "Python",
+        "name": "Python"
+    },
+    "model": "nalch_application.tag",
+    "pk": 1
+},
+{
+    "fields": {
+        "name_en": "Django",
+        "color": "#0fd500",
+        "name_de": "Django",
+        "name": "Django"
+    },
+    "model": "nalch_application.tag",
+    "pk": 2
+},
+    {
+    "fields": {
+        "name_en": "DevOps",
+        "color": "#ff3c41",
+        "name_de": "DevOps",
+        "name": "DevOps"
+    },
+    "model": "nalch_application.tag",
+    "pk": 3
+},
+    {
+    "fields": {
+        "weight": "basic",
+        "icon": "home"
+    },
+    "model": "nalch_application.knowledgelevel",
+    "pk": 1
+},
+{
+    "fields": {
+        "weight": "working",
+        "icon": "home"
+    },
+    "model": "nalch_application.knowledgelevel",
+    "pk": 2
+},
+{
+    "fields": {
+        "weight": "advanced",
+        "icon": "home"
+    },
+    "model": "nalch_application.knowledgelevel",
+    "pk": 3
+},{
+    "fields": {
+        "name": "Professional",
+        "name_de": "Professionell",
+        "name_en": "Professional"
+    },
+    "model": "nalch_application.group",
+    "pk": 1
+},{
+    "fields": {
+        "name": "Freetime",
+        "name_de": "Freizeit",
+        "name_en": "Freetime"
+    },
+    "model": "nalch_application.group",
+    "pk": 2
+}
+]

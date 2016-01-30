@@ -39,6 +39,10 @@ class Tag(TranslatableNameMixin):
     color = RGBColorField()
 
 
+class Group(TranslatableNameMixin):
+    pass
+
+
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthday = models.DateField(blank=True, null=True)
@@ -58,6 +62,7 @@ class Project(TranslatableNameMixin):
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
     tags = models.ManyToManyField(Tag)
+    groups = models.ManyToManyField(Group)
 
     user = models.ForeignKey(Applicant)
 

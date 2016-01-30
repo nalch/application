@@ -9,6 +9,7 @@ from .models import (
     Applicant,
     Attachment,
     ContactDetail,
+    Group,
     KnowledgeLevel,
     Project,
     ProjectImage,
@@ -50,6 +51,10 @@ class TagAdmin(TranslationAdmin):
     pass
 
 
+class GroupAdmin(TranslationAdmin):
+    pass
+
+
 class KnowledgeLevelAdmin(admin.ModelAdmin):
     model = KnowledgeLevel
     extra = 0
@@ -65,6 +70,7 @@ class ProjectAdmin(TranslationAdmin):
 
 
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Group, GroupAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(KnowledgeLevel, KnowledgeLevelAdmin)
