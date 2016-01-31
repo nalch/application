@@ -7,6 +7,7 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', [
     'envelope',
     'globe',
     'gift',
+    'phone-alt',
     'earphone',
     'thumbs-up',
     'check',

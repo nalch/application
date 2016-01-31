@@ -28,55 +28,29 @@ body {
 	width: 50px;
 }
 
-/*#references {
-	border-collapse:collapse;
-	padding-top: 345px;	
+.reference_group {
+    vertical-align: middle !important;
 }
-
-#references td, #references th {
-	font-size:1em;
-	padding:3px 7px 2px 7px;
-	border:1px solid #ddd;
-}
-
-#references th {
-	color:#333;
-	background-color:#f5f5f5;
-	border-color:#ddd;
-	font-size:1.1em;
-	text-align:left;
-	padding-top:5px;
-	padding-bottom:4px;
-}
-
-#references small {
-}
-
-#references tr.alt td {
-	color:#000000;
-	background-color:#f5f5f5;
-}*/
 
 .group-description {
     width: 75%;
+}
+
+.menu-reference {
+    padding-left: 25px !important;
 }
 
 .void-div {
 	display: block;
 }
 
-#references tr.legendrow td {
-	margin-left: auto;
-	border: 0px;
-	text-align: right;
+div.legend {
+    display: inline;
+    padding-left: 25px;
 }
 
-.legend {
-	display: inline;	
-}
-
-.legendrow td div.legend {
-    padding-left: 5px;
+div.legend .glyphicon {
+    padding-right: 5px;
 }
 
 ul.contactdetails {

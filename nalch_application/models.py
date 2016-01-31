@@ -67,7 +67,7 @@ class Project(TranslatableNameMixin):
     publish = models.BooleanField(default=True)
     groups = models.ManyToManyField(Group)
 
-    technologies = models.ManyToManyField(Technology)
+    technologies = models.ManyToManyField(Technology, blank=True, null=True)
 
     user = models.ForeignKey(Applicant)
 
@@ -112,7 +112,7 @@ class KnowledgeLevel(IconMixin):
 class WeightedTag(models.Model):
     tag = models.ForeignKey(Tag)
     weight = models.ForeignKey(KnowledgeLevel)
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, blank=True, null=True)
 
     def __unicode__(self):
         return '%s@%s' % (self.tag.name, self.weight)

@@ -1,7 +1,11 @@
 {% load i18n reference_extras %}
 
 <table id="references" class="center spacey table table-striped">
-<caption>aoesridksrnidernksdaoe</caption>
+<caption class="spacey">
+    {% for level in knowledge_level %}
+        <div class="legend"><span class="glyphicon glyphicon-{{ level.icon }}"></span>{{ level.get_weight_display }}</div>
+    {% endfor %}
+</caption>
 <tr>
     <th>{% trans 'Group' %}</th>
     <th>{% trans 'Project' %}</th>
@@ -13,16 +17,13 @@
     {% for reference in grouped_references %}
         <tr>
           {% if forloop.first %}
-              <td rowspan="{{ grouped_references|length }}">{{ group.name }}</td>
+              <td rowspan="{{ grouped_references|length }}" class="reference_group">{{ group.name }}</td>
           {% endif %}
           <td><a href="#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></td>
           {% for tag in tags %}
-            <td><div class="void-div glyphicon glyphicon-{% knowledge_level tag reference %} center"></div></td>
+            <td><div class="glyphicon glyphicon-{% knowledge_level tag reference %} center"></div></td>
           {% endfor %}
         </tr>
     {% endfor %}
-{% endfor %}
-{% for level in knowledge_level %}
-    <tr class="legendrow"><td colspan="10"><span class="glyphicon glyphicon-{{ level.icon }}"></span><div class="legend">{{ level.get_weight_display }}</div></td></tr>
 {% endfor %}
 </table>

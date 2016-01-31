@@ -38,22 +38,36 @@
                         <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
                         <div class="col-md-9">
                             {{ reference.description|safe }}
-                            <br/><br/>
-                            {% trans 'Attachments' %}
-                            <ul>
-                                {% for attachment in reference.attachment_set.all %}
-                                    <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
-                                {% endfor %}
-                            </ul>
+
+                            {% if reference.attachment_set.all|length > 0 %}
+                                <br/><br/>
+                                {% trans 'Attachments' %}
+                                <ul>
+                                    {% for attachment in reference.attachment_set.all %}
+                                        <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
                             <hr/>
-                            {% trans 'Tags' %}<br/>
-                            {% for weighted_tag in reference.weightedtag_set.all %}
-                                <span class="label" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
-                            {% endfor %}<br/>
-                            {% trans 'Technologies' %}<br/>
-                            {% for tech in reference.technologies.all %}
-                                {{ tech }}
-                            {% endfor %}
+
+                            {% if reference.weightedtag_set.all|length > 0 %}
+                                {% trans 'Tags' %}<br/>
+                                {% for weighted_tag in reference.weightedtag_set.all %}
+                                    <span class="label" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
+                                {% endfor %}
+                                <br/>
+                                <br/>
+                            {% endif %}
+
+                            {% if reference.technologies.all|length > 0 %}
+                                {% trans 'Technologies' %}<br/>
+                                <ul>
+                                {% for tech in reference.technologies.all %}
+                                    <li>{{ tech }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
                         </div>
                   </div>
                   <div class="row">
