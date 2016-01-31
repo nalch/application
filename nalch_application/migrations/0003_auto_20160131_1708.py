@@ -7,15 +7,15 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nalch_application', '0029_auto_20160129_1358'),
+        ('nalch_application', '0002_auto_20160131_1651'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Group',
+            name='Technology',
             fields=[
                 ('name_id', models.AutoField(serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=200)),
+                ('name', models.CharField(unique=True, max_length=200)),
             ],
             options={
                 'abstract': False,
@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='project',
-            name='groups',
-            field=models.ManyToManyField(to='nalch_application.Group'),
+            name='technologies',
+            field=models.ManyToManyField(to='nalch_application.Technology'),
             preserve_default=True,
         ),
     ]

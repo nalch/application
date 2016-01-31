@@ -11,6 +11,7 @@ from .models import (
     Project,
     ProjectImage,
     Tag,
+    Technology,
     TranslatableNameMixin,
 )
 
@@ -43,6 +44,10 @@ class TagTranslationOptions(TNMTranslationOptions):
     pass
 
 
+class TechnologyTranslationOptions(TNMTranslationOptions):
+    pass
+
+
 class GroupTranslationOptions(TNMTranslationOptions):
     fields = ('description', 'short_name', )
 
@@ -54,4 +59,5 @@ translator.register(Project, ProjectTranslationOptions)
 translator.register(ProjectImage, ProjectImageTranslationOptions)
 translator.register(Attachment, AttachmentTranslationOptions)
 translator.register(Tag, TagTranslationOptions)
+translator.register(Technology, TagTranslationOptions)
 translator.register(Group, GroupTranslationOptions)

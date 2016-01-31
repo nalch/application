@@ -18,8 +18,14 @@
 <h2>{% trans 'Projects' %}</h2>
 
 {% for group, grouped_references in references.iteritems %}
-    <h3 id="{{ group.public_name }}">{{ group.name }}</h3>
-    {{ group.description }}
+    <div class="panel panel-default center group-description">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ group.name }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ group.description }}
+      </div>
+    </div>
     {% for reference in grouped_references %}
         <div id="{{ group.public_name }}-{{ reference.public_name }}" class="container spacey">
 
@@ -51,7 +57,7 @@
                         </div>
                   </div>
                   <div class="row">
-                            <div id="{{ reference.public_name }}-gallery" class="gallery spacey center">
+                            <div id="{{ group.public_name }}-{{ reference.public_name }}-gallery" class="gallery spacey center">
                                 {% for image in reference.images.all %}
                                 <a href="{{ image.image.url }}" title="{{ image.title }}"><img src="{{ image.thumbnail.url }}" alt="{{ image.title }}"/></a>
                                 {% endfor %}
@@ -83,8 +89,10 @@
     <script>
 
 	    var galleries = [
-            {% for reference in references %}
-                '{{ reference.public_name }}',
+            {% for group, grouped_references in references.iteritems %}
+                {% for reference in grouped_references %}
+                    '{{ group.public_name }}-{{ reference.public_name }}',
+                {% endfor %}
             {% endfor %}
 		];
 

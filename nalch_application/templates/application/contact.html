@@ -13,7 +13,7 @@
                 <small><cite>{{ applicant.address }}<i class="icon-map-marker"></i></cite></small>
                   <ul class="contactdetails">
                   {% for detail in applicant.contactdetail_set.all %}
-                    <li><span class="glyphicon glyphicon-{{ detail.icon }}" aria-hidden="true"></span>{{ detail.text }}</li>
+                    <li><span class="glyphicon glyphicon-{{ detail.icon }}" aria-hidden="true"></span>{{ detail.name }}</li>
                   {% endfor %}
                   </ul>
                 </p>

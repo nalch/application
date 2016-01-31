@@ -7,20 +7,20 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nalch_application', '0012_projectimage_title'),
+        ('nalch_application', '0003_auto_20160131_1708'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='projectimage',
-            name='title_de',
-            field=models.CharField(max_length=500, null=True),
+            model_name='technology',
+            name='name_de',
+            field=models.CharField(max_length=200, unique=True, null=True),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='projectimage',
-            name='title_en',
-            field=models.CharField(max_length=500, null=True),
+            model_name='technology',
+            name='name_en',
+            field=models.CharField(max_length=200, unique=True, null=True),
             preserve_default=True,
         ),
     ]

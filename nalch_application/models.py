@@ -34,6 +34,10 @@ class Tag(TranslatableNameMixin):
     color = RGBColorField()
 
 
+class Technology(TranslatableNameMixin):
+    pass
+
+
 class Group(TranslatableNameMixin):
     description = models.TextField()
     short_name = models.CharField(max_length=25, unique=True)
@@ -41,6 +45,7 @@ class Group(TranslatableNameMixin):
     @property
     def public_name(self):
         return self.short_name_en
+
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -61,6 +66,8 @@ class Project(TranslatableNameMixin):
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
     groups = models.ManyToManyField(Group)
+
+    technologies = models.ManyToManyField(Technology)
 
     user = models.ForeignKey(Applicant)
 
@@ -84,7 +91,7 @@ class ContactDetail(TranslatableNameMixin, IconMixin):
     applicant = models.ForeignKey(Applicant, blank=True, null=True)
 
     def __unicode__(self):
-        return '%s: %s' % (self.applicant, self.text)
+        return '%s: %s' % (self.applicant, self.name)
 
 
 class KnowledgeLevel(IconMixin):

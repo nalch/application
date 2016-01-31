@@ -14,12 +14,12 @@ from .models import (
     Project,
     ProjectImage,
     Tag,
+    Technology,
     WeightedTag,
 )
 
 
-class ContactDetailInline(admin.TabularInline):
-    exclude = ('text', )
+class ContactDetailInline(TranslationTabularInline):
     model = ContactDetail
     extra = 0
 
@@ -51,6 +51,10 @@ class TagAdmin(TranslationAdmin):
     pass
 
 
+class TechnologyAdmin(TranslationAdmin):
+    pass
+
+
 class GroupAdmin(TranslationAdmin):
     pass
 
@@ -70,6 +74,7 @@ class ProjectAdmin(TranslationAdmin):
 
 
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
