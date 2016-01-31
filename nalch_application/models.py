@@ -9,7 +9,7 @@ from . import app_settings
 
 class TranslatableNameMixin(models.Model):
     name_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -36,7 +36,7 @@ class Tag(TranslatableNameMixin):
 
 class Group(TranslatableNameMixin):
     description = models.TextField()
-    short_name = models.CharField(max_length=25)
+    short_name = models.CharField(max_length=25, unique=True)
 
     @property
     def public_name(self):
@@ -56,11 +56,11 @@ class Project(TranslatableNameMixin):
     """
     model to represent projects with names, descriptions, images and tags
     """
-    short_name = models.CharField(max_length=25)
+    short_name = models.CharField(max_length=25, unique=True)
     description = models.TextField()
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
-    tags = models.ManyToManyField(Tag)
+    # tags = models.ManyToManyField(Tag)
     groups = models.ManyToManyField(Group)
 
     user = models.ForeignKey(Applicant)

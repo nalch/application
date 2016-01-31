@@ -1,5 +1,5 @@
 {% extends 'application/base.html' %}
-{% load i18n staticfiles %}
+{% load i18n reference_extras staticfiles %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'application/css/blueimp-gallery.min.css' %}">
@@ -13,32 +13,7 @@
     </div>
 </div>
 
-<table id="references" class="center spacey">
-<tr>
-    <th>{% trans 'Group' %}</th>
-  <th>Projekt</th>
-    {% for tag in weighted_tags %}
-  <th>{{ tag }}</th>
-    {% endfor %}
-</tr>
-{% for group, grouped_references in references.iteritems %}
-    {% for reference in grouped_references %}
-        <tr class="{% cycle '' 'alt' %}">
-          <td><a href="#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></td>
-          <td></td>
-          <td><div class="void-div icon-check center"></div></td>
-          <td><div class="void-div icon-check center"></div></td>
-          <td><div class="void-div icon-thumbs-up center"></div></td>
-          <td><div class="void-div icon-check center"></div></td>
-          <td></td>
-          <td><div class="void-div icon-thumbs-up center"></div></td>
-        </tr>
-    {% endfor %}
-{% endfor %}
-{% for level in knowledge_level %}
-    <tr class="legendrow"><td colspan="10"><span class="glyphicon glyphicon-{{ level.icon }}"></span><div class="legend">{{ level.get_weight_display }}</div></td></tr>
-{% endfor %}
-</table>
+{% reference_table applicant references %}
 
 <h2>{% trans 'Projects' %}</h2>
 

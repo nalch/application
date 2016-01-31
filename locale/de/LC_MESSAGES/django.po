@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 20:19+0000\n"
-"PO-Revision-Date: 2016-01-27 21:21+0100\n"
+"POT-Creation-Date: 2016-01-31 14:31+0000\n"
+"PO-Revision-Date: 2016-01-31 15:32+0100\n"
 "Last-Translator: Kristian Scholze <Scholze.Kristian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,26 +17,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: application/settings.py:63
+#: application/settings.py:64
 msgid "German"
 msgstr "Deutsch"
 
-#: application/settings.py:64
+#: application/settings.py:65
 msgid "English"
 msgstr "Englisch"
 
-#: nalch_application/models.py:78
-#: nalch_application/templates/application/references.html:42
+#: nalch_application/models.py:99
 msgid "basic knowledge"
 msgstr "Grundwissen"
 
-#: nalch_application/models.py:79
-#: nalch_application/templates/application/references.html:41
+#: nalch_application/models.py:100
 msgid "working knowledge"
 msgstr "Fortgeschritten"
 
-#: nalch_application/models.py:80
-#: nalch_application/templates/application/references.html:40
+#: nalch_application/models.py:101
 msgid "advanced knowledge"
 msgstr "Expertenwissen"
 
@@ -65,18 +62,28 @@ msgstr ""
 "konkretere Details <a href=\"mailto:%(mail)s\">per Mail</a> oder in einem "
 "persönlichen Gespräch zu erörtern."
 
-#: nalch_application/templates/application/references.html:46
+#: nalch_application/templates/application/references.html:18
 msgid "Projects"
 msgstr "Projekte"
 
-#: nalch_application/templates/application/references.html:62
+#: nalch_application/templates/application/references.html:37
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: nalch_application/templates/application/references.html:69
+#: nalch_application/templates/application/references.html:44
 msgid "Tags"
 msgstr "Schlagworte"
 
-#: nalch_application/templates/application/references.html:74
+#: nalch_application/templates/application/references.html:48
 msgid "Technologies"
 msgstr "Technologien"
+
+#: nalch_application/templates/application/templatetags/reference_table.html:5
+msgid "Group"
+msgstr "Bereich"
+
+#: nalch_application/templates/application/templatetags/reference_table.html:6
+#, fuzzy
+#| msgid "Projects"
+msgid "Project"
+msgstr "Projekte"

@@ -26,12 +26,12 @@
                         {% trans 'References' %}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'references' applicant.user.username %}">{% trans 'Overview' %}</a></li>
+                        <li><a href="{% url 'references' applicant.user.username %}"><b>{% trans 'Overview' %}</b></a></li>
                         <li>
                             <hr/>
                         </li>
                         {% for group, grouped_references in references.iteritems %}
-                            <li><a href="{% url 'references' applicant.user.username %}#{{ group.public_name }}">{{ group.public_name }}</a></li>
+                            <li><a href="{% url 'references' applicant.user.username %}#{{ group.public_name }}"><b>{{ group.name }}</b></a></li>
                             {% for reference in grouped_references %}
                                 <li><a href="{% url 'references' applicant.user.username %}#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></li>
                             {% endfor %}
