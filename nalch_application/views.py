@@ -3,7 +3,10 @@ from django.template import RequestContext
 
 from nalch_application.models import (
     Applicant,
-    Project
+    Group,
+    KnowledgeLevel,
+    Project,
+    WeightedTag,
 )
 
 
@@ -33,8 +36,18 @@ def contact(request, applicant):
 
 
 def references(request, applicant):
+    projects = Project.objects.filter(publish=True, user__user__username=applicant)
+    groups = Group.objects.filter(project__in=projects)
+    weighted_tags = WeightedTag.objects.filter(project__in=projects)
+    knowledge_level = set([wt.weight for wt in weighted_tags])
+    context = {
+        'weighted_tags': weighted_tags,
+        'knowledge_level': knowledge_level,
+        'groups': groups,
+    }.copy()
+    context.update(get_shared_context(request, applicant, 'references'))
     return render_to_response(
             'application/references.html',
-            get_shared_context(request, applicant, 'references'),
+            context,
             context_instance=RequestContext(request)
     )

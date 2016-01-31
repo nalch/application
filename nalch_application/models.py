@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from . import app_settings
+
 
 class TranslatableNameMixin(models.Model):
     name_id = models.AutoField(primary_key=True)
@@ -19,14 +21,7 @@ class TranslatableNameMixin(models.Model):
 class IconMixin(models.Model):
     icon = models.CharField(
         default='',
-        choices=[
-            ('home', 'Haus'),
-            ('bullhorn', 'Megaphone'),
-            ('envelope', 'Umschlag'),
-            ('globe', 'Weltkugel'),
-            ('gift', 'Geschenk'),
-            ('earphone', 'Telefon'),
-        ],
+        choices=[(icon, _(icon)) for icon in app_settings.ICONS],
         max_length=200,
         help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
     )
@@ -40,7 +35,7 @@ class Tag(TranslatableNameMixin):
 
 
 class Group(TranslatableNameMixin):
-    pass
+    description = models.TextField()
 
 
 class Applicant(models.Model):

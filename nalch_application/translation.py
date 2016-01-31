@@ -44,7 +44,7 @@ class TagTranslationOptions(TNMTranslationOptions):
 
 
 class GroupTranslationOptions(TNMTranslationOptions):
-    pass
+    fields = ('description', )
 
 
 translator.register(TranslatableNameMixin, TNMTranslationOptions)
