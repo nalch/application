@@ -33,7 +33,6 @@
                         <div class="col-md-9">
                             {{ reference.description|safe }}
                             <br/><br/>
-                            Download des schriftlichen Teiles der Arbeit sowie der Abschlusspr&auml;sentation:<br/>
                             {% trans 'Attachments' %}
                             <ul>
                                 {% for attachment in reference.attachment_set.all %}
@@ -42,8 +41,8 @@
                             </ul>
                             <hr/>
                             {% trans 'Tags' %}<br/>
-                            {% for tag in reference.tags.all %}
-                                <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
+                            {% for weighted_tag in reference.weightedtag_set.all %}
+                                <span class="label" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
                             {% endfor %}<br/>
                             {% trans 'Technologies' %}<br/>
                             {% for tech in reference.technologies.all %}
