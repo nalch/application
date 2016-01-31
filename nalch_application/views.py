@@ -1,20 +1,29 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from itertools import chain
+
+
 from nalch_application.models import (
     Applicant,
     Group,
-    KnowledgeLevel,
     Project,
     WeightedTag,
 )
 
 
 def get_shared_context(request, applicant, active='index'):
+    references = Project.objects.filter(publish=True, user__user__username=applicant)
+    # get all groups for all references, flatten the list using itertools and remove duplicates
+    groups = set(chain.from_iterable([reference.groups.all() for reference in references]))
+    # group references
+    references = {
+        group: [reference for reference in references if group in reference.groups.all()] for group in groups
+    }
     context = {
         'active': active,
         'applicant': Applicant.objects.get(user__username=applicant),
-        'references': Project.objects.filter(publish=True, user__user__username=applicant),
+        'references': references,
     }
     return context
 
@@ -43,7 +52,6 @@ def references(request, applicant):
     context = {
         'weighted_tags': weighted_tags,
         'knowledge_level': knowledge_level,
-        'groups': groups,
     }.copy()
     context.update(get_shared_context(request, applicant, 'references'))
     return render_to_response(

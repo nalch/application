@@ -36,7 +36,11 @@ class Tag(TranslatableNameMixin):
 
 class Group(TranslatableNameMixin):
     description = models.TextField()
+    short_name = models.CharField(max_length=25)
 
+    @property
+    def public_name(self):
+        return self.short_name_en
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

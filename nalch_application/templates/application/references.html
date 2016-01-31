@@ -15,74 +15,79 @@
 
 <table id="references" class="center spacey">
 <tr>
+    <th>{% trans 'Group' %}</th>
   <th>Projekt</th>
-    {% for tag in Tag.objects.all %}
+    {% for tag in weighted_tags %}
   <th>{{ tag }}</th>
     {% endfor %}
 </tr>
-{% for reference in references %}
-<tr class="{% cycle '' 'alt' %}">
-  <td><a href="#{{ reference.public_name }}">{{ reference.short_name }}</a></td>
-  <td></td>
-  <td><div class="void-div icon-check center"></div></td>
-  <td><div class="void-div icon-check center"></div></td>
-  <td><div class="void-div icon-thumbs-up center"></div></td>
-  <td><div class="void-div icon-check center"></div></td>
-  <td></td>
-  <td><div class="void-div icon-thumbs-up center"></div></td>
-</tr>
+{% for group, grouped_references in references.iteritems %}
+    {% for reference in grouped_references %}
+        <tr class="{% cycle '' 'alt' %}">
+          <td><a href="#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></td>
+          <td></td>
+          <td><div class="void-div icon-check center"></div></td>
+          <td><div class="void-div icon-check center"></div></td>
+          <td><div class="void-div icon-thumbs-up center"></div></td>
+          <td><div class="void-div icon-check center"></div></td>
+          <td></td>
+          <td><div class="void-div icon-thumbs-up center"></div></td>
+        </tr>
+    {% endfor %}
 {% endfor %}
-
-<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-thumbs-up"></div><div class="legend">{% trans 'advanced knowledge' %}</div></td></tr>
-<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-check"></div><div class="legend">{% trans 'working knowledge' %}</div></td></tr>
-<tr class="legendrow"><td colspan="10"><div class="glyphicon glyphicon-wrench"></div><div class="legend">{% trans 'basic knowledge' %}</div></td></tr>
+{% for level in knowledge_level %}
+    <tr class="legendrow"><td colspan="10"><span class="glyphicon glyphicon-{{ level.icon }}"></span><div class="legend">{{ level.get_weight_display }}</div></td></tr>
+{% endfor %}
 </table>
-
 
 <h2>{% trans 'Projects' %}</h2>
 
-{% for reference in references %}
-	<div id="{{ reference.public_name }}" class="container spacey">
+{% for group, grouped_references in references.iteritems %}
+    <h3 id="{{ group.public_name }}">{{ group.name }}</h3>
+    {{ group.description }}
+    {% for reference in grouped_references %}
+        <div id="{{ group.public_name }}-{{ reference.public_name }}" class="container spacey">
 
-      <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"><b>{{ reference.name }}</b></h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
-                    <div class="col-md-9">
-                        {{ reference.description|safe }}
-                        <br/><br/>
-                        Download des schriftlichen Teiles der Arbeit sowie der Abschlusspr&auml;sentation:<br/>
-                        {% trans 'Attachments' %}
-                        <ul>
-                            {% for attachment in reference.attachment_set.all %}
-                        	    <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
+          <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><b>{{ reference.name }}</b></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
+                        <div class="col-md-9">
+                            {{ reference.description|safe }}
+                            <br/><br/>
+                            Download des schriftlichen Teiles der Arbeit sowie der Abschlusspr&auml;sentation:<br/>
+                            {% trans 'Attachments' %}
+                            <ul>
+                                {% for attachment in reference.attachment_set.all %}
+                                    <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
+                                {% endfor %}
+                            </ul>
+                            <hr/>
+                            {% trans 'Tags' %}<br/>
+                            {% for tag in reference.tags.all %}
+                                <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
+                            {% endfor %}<br/>
+                            {% trans 'Technologies' %}<br/>
+                            {% for tech in reference.technologies.all %}
+                                {{ tech }}
                             {% endfor %}
-                        </ul>
-                        <hr/>
-                        {% trans 'Tags' %}<br/>
-                        {% for tag in reference.tags.all %}
-			                <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
-                        {% endfor %}<br/>
-                        {% trans 'Technologies' %}<br/>
-                        {% for tech in reference.technologies.all %}
-                            {{ tech }}
-                        {% endfor %}
-                    </div>
+                        </div>
+                  </div>
+                  <div class="row">
+                            <div id="{{ reference.public_name }}-gallery" class="gallery spacey center">
+                                {% for image in reference.images.all %}
+                                <a href="{{ image.image.url }}" title="{{ image.title }}"><img src="{{ image.thumbnail.url }}" alt="{{ image.title }}"/></a>
+                                {% endfor %}
+                            </div>
+                  </div>
+                </div>
               </div>
-              <div class="row">
-						<div id="{{ reference.public_name }}-gallery" class="gallery spacey center">
-                            {% for image in reference.images.all %}
-    						<a href="{{ image.image.url }}" title="{{ image.title }}"><img src="{{ image.thumbnail.url }}" alt="{{ image.title }}"/></a>
-    						{% endfor %}
-						</div>
-              </div>
-            </div>
-          </div>
 
-    </div>
+        </div>
+    {% endfor %}
 {% endfor %}
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->

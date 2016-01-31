@@ -30,8 +30,11 @@
                         <li>
                             <hr/>
                         </li>
-                        {% for reference in references %}
-                            <li><a href="{% url 'references' applicant.user.username %}#{{ reference.public_name }}">{{ reference.short_name }}</a></li>
+                        {% for group, grouped_references in references.iteritems %}
+                            <li><a href="{% url 'references' applicant.user.username %}#{{ group.public_name }}">{{ group.public_name }}</a></li>
+                            {% for reference in grouped_references %}
+                                <li><a href="{% url 'references' applicant.user.username %}#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></li>
+                            {% endfor %}
                         {% endfor %}
                     </ul>
                 </li>
@@ -52,8 +55,6 @@
                     </select>
                 </div>
             </form>
-            </li>
-            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>

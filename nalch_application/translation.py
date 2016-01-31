@@ -28,7 +28,7 @@ class ContactDetailTranslationOptions(TNMTranslationOptions):
 
 
 class ProjectTranslationOptions(TNMTranslationOptions):
-    fields = ('short_name', 'description', )
+    fields = ('description', 'short_name', )
 
 
 class ProjectImageTranslationOptions(TNMTranslationOptions):
@@ -44,7 +44,7 @@ class TagTranslationOptions(TNMTranslationOptions):
 
 
 class GroupTranslationOptions(TNMTranslationOptions):
-    fields = ('description', )
+    fields = ('description', 'short_name', )
 
 
 translator.register(TranslatableNameMixin, TNMTranslationOptions)
