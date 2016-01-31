@@ -60,7 +60,6 @@ class Project(TranslatableNameMixin):
     description = models.TextField()
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
-    # tags = models.ManyToManyField(Tag)
     groups = models.ManyToManyField(Group)
 
     user = models.ForeignKey(Applicant)

@@ -11,7 +11,9 @@
 {% for group, grouped_references in references.iteritems %}
     {% for reference in grouped_references %}
         <tr class="{% cycle '' 'alt' %}">
-          <td>{{ group.name }}</td>
+          {% if forloop.first %}
+              <td rowspan="{{ grouped_references|length }}">{{ group.name }}</td>
+          {% endif %}
           <td><a href="#{{ group.public_name }}-{{ reference.public_name }}">{{ reference.short_name }}</a></td>
           {% for tag in tags %}
             <td><div class="void-div glyphicon glyphicon-{% knowledge_level tag reference %} center"></div></td>
