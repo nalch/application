@@ -5,7 +5,9 @@
 
     <div class="row spacey">
       <div class="col-xs-3 col-md-2">
-          <img src="{% static 'application/img/ksgross.png' %}" alt="" class="img img-full">
+          {% if applicant.profile_picture %}
+            <img src="{{ applicant.profile_picture.url }}" alt="{{ applicant.name }}" class="img img-full">
+          {% endif %}
       </div>
       <div class="col-xs-12 col-md-8">
           <blockquote>
