@@ -71,6 +71,7 @@ class WeightedTagInline(admin.TabularInline):
 
 class ProjectAdmin(TranslationAdmin):
     inlines = [WeightedTagInline, ProjectImageInline, AttachmentInline, ]
+    list_display = ('short_name', 'name', 'publish', 'user')
 
 
 admin.site.register(Tag, TagAdmin)
