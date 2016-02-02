@@ -1,4 +1,7 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import (
+    get_object_or_404,
+    render_to_response
+)
 from django.template import RequestContext
 
 from itertools import chain
@@ -11,6 +14,7 @@ from nalch_application.models import (
 
 
 def get_shared_context(request, applicant, active='index'):
+    get_object_or_404(Applicant, user__username=applicant)
     projects = Project.objects.filter(publish=True, user__user__username=applicant)
     # get all groups for all references, flatten the list using itertools and remove duplicates
     groups = set(chain.from_iterable([reference.groups.all() for reference in projects]))
