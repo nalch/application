@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="{{ applicant }}" >
+    <meta name="author" content="{{ applicant.user.first_name }} {{ applicant.user.last_name }}" >
     <link rel="shortcut icon" href="{% static 'application/img/favicon.ico' %}">
 
-    <title>{{ applicant }}</title>
+    <title>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'application/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">

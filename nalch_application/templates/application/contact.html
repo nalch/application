@@ -6,7 +6,7 @@
     <div class="row spacey">
       <div class="col-xs-3 col-md-2">
           {% if applicant.profile_picture %}
-            <img src="{{ applicant.profile_picture.url }}" alt="{{ applicant.name }}" class="img img-full">
+            <img src="{{ applicant.profile_picture.url }}" alt="{{ applicant.user.first_name }} {{ applicant.user.last_name }}" class="img img-full">
           {% endif %}
       </div>
       <div class="col-xs-12 col-md-8">
