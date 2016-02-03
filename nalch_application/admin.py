@@ -1,3 +1,5 @@
+from adminsortable2.admin import SortableAdminMixin
+
 from django.contrib import admin
 
 from modeltranslation.admin import (
@@ -69,7 +71,7 @@ class WeightedTagInline(admin.TabularInline):
     extra = 0
 
 
-class ProjectAdmin(TranslationAdmin):
+class ProjectAdmin(SortableAdminMixin, TranslationAdmin):
     inlines = [WeightedTagInline, ProjectImageInline, AttachmentInline, ]
     list_display = ('short_name', 'name', 'publish', 'user')
 

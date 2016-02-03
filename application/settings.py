@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'nalch_application',
     'modeltranslation',
     'colorful',
+    'adminsortable2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

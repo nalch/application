@@ -71,9 +71,14 @@ class Project(TranslatableNameMixin):
 
     user = models.ForeignKey(Applicant)
 
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
     @property
     def public_name(self):
         return self.short_name_en
+
+    class Meta(object):
+        ordering = ('order',)
 
 
 class Attachment(TranslatableNameMixin):
