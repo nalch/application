@@ -1,3 +1,5 @@
+import glob
+import json
 import os
 
 from django.utils.translation import ugettext_lazy as _
@@ -5,20 +7,26 @@ from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-STATIC_ROOT = os.path.join('static')
-MEDIA_ROOT = os.path.join('media')
+# settings up settings pipeline
+server_settings = {}
+for settings_file in glob.glob(os.path.join(BASE_DIR, 'application', 'settings_pipeline', '*.json')):
+    with open(settings_file) as config_file:
+        tmp = server_settings.copy()
+        tmp.update(json.load(config_file))
+        server_settings = tmp
 
-SECRET_KEY = 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih'
+# paths
+STATIC_ROOT = server_settings.get('STATIC_ROOT', os.path.join('static'))
+MEDIA_ROOT = server_settings.get('MEDIA_ROOT', os.path.join('media'))
 
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+# server settings
+SECRET_KEY = server_settings.get('SECRET_KEY', 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih')
+DEBUG = server_settings.get('DEBUG', True)
+TEMPLATE_DEBUG = server_settings.get('TEMPLATE_DEBUG', True)
+ALLOWED_HOSTS = server_settings.get('ALLOWED_HOSTS', [])
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'nalch_application',
     'modeltranslation',
@@ -51,12 +59,12 @@ WSGI_APPLICATION = 'application.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
+DATABASES = server_settings.get('DATABASES', {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+})
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -72,7 +80,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+    server_settings.get('LOCALE_PATH', os.path.join(BASE_DIR, 'locale')),
 )
 
 
