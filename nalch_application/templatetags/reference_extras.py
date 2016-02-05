@@ -29,3 +29,11 @@ def knowledge_level(tag, project):
     except ObjectDoesNotExist:
         return ''
 
+
+@register.simple_tag
+def reference(group, reference_item):
+    context_dict = {
+        'group': group,
+        'reference': reference_item,
+    }
+    return render_to_string('application/templatetags/reference.html', context_dict)

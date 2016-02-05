@@ -26,62 +26,11 @@
         {{ group.description }}
       </div>
     </div>
+
     {% for reference in grouped_references %}
-        <div id="{{ group.public_name }}-{{ reference.public_name }}" class="container spacey">
-
-          <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title"><b>{{ reference.name }}</b></h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3"><img data-src="holder.js/200x200" src="{{ reference.title_thumbnail.url }}" class="img-full" alt="Logo"/></div>
-                        <div class="col-md-9">
-                            {{ reference.description|safe }}
-
-                            {% if reference.attachment_set.all|length > 0 %}
-                                <br/><br/>
-                                {% trans 'Attachments' %}
-                                <ul>
-                                    {% for attachment in reference.attachment_set.all %}
-                                        <li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-
-                            <hr/>
-
-                            {% if reference.weightedtag_set.all|length > 0 %}
-                                {% trans 'Tags' %}<br/>
-                                {% for weighted_tag in reference.weightedtag_set.all %}
-                                    <span class="label" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
-                                {% endfor %}
-                                <br/>
-                                <br/>
-                            {% endif %}
-
-                            {% if reference.technologies.all|length > 0 %}
-                                {% trans 'Technologies' %}<br/>
-                                <ul>
-                                {% for tech in reference.technologies.all %}
-                                    <li>{{ tech }}</li>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </div>
-                  </div>
-                  <div class="row">
-                            <div id="{{ group.public_name }}-{{ reference.public_name }}-gallery" class="gallery spacey center">
-                                {% for image in reference.images.all %}
-                                <a href="{{ image.image.url }}" title="{{ image.title }}"><img src="{{ image.thumbnail.url }}" alt="{{ image.title }}"/></a>
-                                {% endfor %}
-                            </div>
-                  </div>
-                </div>
-              </div>
-
-        </div>
+        {% reference group reference %}
     {% endfor %}
+
 {% endfor %}
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
