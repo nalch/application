@@ -121,3 +121,12 @@ class WeightedTag(models.Model):
 
     def __unicode__(self):
         return '%s@%s' % (self.tag.name, self.weight)
+
+class AreaOfInterest(TranslatableNameMixin):
+    technologies = models.ManyToManyField(Technology, blank=True, null=True)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
+    user = models.ForeignKey(Applicant)
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta(object):
+        ordering = ('order',)
