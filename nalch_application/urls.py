@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from views import (
+    areasofinterest,
     contact,
     index,
     references
@@ -10,5 +11,6 @@ from views import (
 urlpatterns = [
     url(r'^(?P<applicant>[a-z]+)/$', index, name='index'),
     url(r'^(?P<applicant>[a-z]+)/references/$', references, name='references'),
-    url(r'^(?P<applicant>[a-z]+)/contact/$', contact, name='contact')
+    url(r'^(?P<applicant>[a-z]+)/contact/$', contact, name='contact'),
+    url(r'^(?P<applicant>[a-z]+)/areasofinterest/$', areasofinterest, name='areasofinterest')
 ]

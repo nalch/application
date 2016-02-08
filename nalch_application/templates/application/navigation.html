@@ -14,12 +14,22 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+
                 <li {% if active == 'index' %}class="active"{% endif %}>
                     <a href="{% url 'index' applicant.user.username %}">{% trans 'Home' %}</a>
                 </li>
+
                 <li {% if active == 'contact' %}class="active"{% endif %}>
                     <a href="{% url 'contact' applicant.user.username %}">{% trans 'Contact' %}</a>
                 </li>
+
+                {% if applicant.areaofinterest_set.all|length > 0 %}
+                <li {% if active == 'areasofinterest' %}class="active"{% endif %}>
+                    <a href="{% url 'areasofinterest' applicant.user.username %}">{% trans 'Areas of interest' %}</a>
+                </li>
+                {% endif %}
+
+                {% if references|length > 0 %}
                 <li class="{% if active == 'references' %}active{% endif %} dropdown">
                     <a href="{% url 'references' applicant.user.username %}" class="dropdown-toggle"
                        data-toggle="dropdown">
@@ -38,6 +48,7 @@
                         {% endfor %}
                     </ul>
                 </li>
+                {% endif %}
             </ul>
 
             <form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}

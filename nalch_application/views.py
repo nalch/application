@@ -54,3 +54,11 @@ def references(request, applicant):
             context,
             context_instance=RequestContext(request)
     )
+
+
+def areasofinterest(request, applicant):
+    return render_to_response(
+            'application/interestareas.html',
+            get_shared_context(request, applicant, 'areasofinterest'),
+            context_instance=RequestContext(request)
+    )

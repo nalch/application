@@ -1,0 +1,30 @@
+{% extends 'application/base.html' %}
+{% load i18n reference_extras staticfiles %}
+
+
+{% block content %}
+
+<!--
+
+
+    <div class="spacey">
+    <div class="well well-sm well-info center">
+        {% blocktrans %}Interesting{% endblocktrans %}
+    </div>
+</div>
+-->
+
+{% for aoi in applicant.areaofinterest_set.all %}
+<div class="row spacey">
+<div class="panel panel-default center group-description">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ aoi.name }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ aoi.description }}
+      </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
