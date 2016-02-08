@@ -9,6 +9,7 @@ from modeltranslation.admin import (
 
 from .models import (
     Applicant,
+    AreaOfInterest,
     Attachment,
     ContactDetail,
     Group,
@@ -76,9 +77,14 @@ class ProjectAdmin(SortableAdminMixin, TranslationAdmin):
     list_display = ('short_name', 'name', 'publish', 'user')
 
 
+class AreaOfInterestAdmin(SortableAdminMixin, TranslationAdmin):
+    model = AreaOfInterest
+
+
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(KnowledgeLevel, KnowledgeLevelAdmin)
+admin.site.register(AreaOfInterest, AreaOfInterestAdmin)

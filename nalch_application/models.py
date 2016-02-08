@@ -38,6 +38,14 @@ class Technology(TranslatableNameMixin):
     pass
 
 
+class TagnologyMixin(models.Model):
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
+    technologies = models.ManyToManyField(Technology, blank=True, null=True)
+
+    class Meta:
+        abstract = True
+
+
 class Group(TranslatableNameMixin):
     description = models.TextField()
     short_name = models.CharField(max_length=25, unique=True)
@@ -122,11 +130,11 @@ class WeightedTag(models.Model):
     def __unicode__(self):
         return '%s@%s' % (self.tag.name, self.weight)
 
-class AreaOfInterest(TranslatableNameMixin):
-    technologies = models.ManyToManyField(Technology, blank=True, null=True)
-    tags = models.ManyToManyField(Tag, blank=True, null=True)
+
+class AreaOfInterest(TranslatableNameMixin, TagnologyMixin):
     user = models.ForeignKey(Applicant)
+    description = models.TextField()
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     class Meta(object):
-        ordering = ('order',)
+        ordering = ('order', )
