@@ -23,9 +23,15 @@
                     <a href="{% url 'contact' applicant.user.username %}">{% trans 'Contact' %}</a>
                 </li>
 
-                {% if applicant.areaofinterest_set.all|length > 0 %}
+                {% if applicant.areas_of_interest.all|length > 0 %}
                 <li {% if active == 'areasofinterest' %}class="active"{% endif %}>
                     <a href="{% url 'areasofinterest' applicant.user.username %}">{% trans 'Areas of interest' %}</a>
+                </li>
+                {% endif %}
+
+                {% if applicant.areas_of_expertise.all|length > 0 %}
+                <li {% if active == 'areasofexpertise' %}class="active"{% endif %}>
+                    <a href="{% url 'areasofexpertise' applicant.user.username %}">{% trans 'Areas of expertise' %}</a>
                 </li>
                 {% endif %}
 

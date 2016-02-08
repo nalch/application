@@ -1,5 +1,5 @@
 {% extends 'application/base.html' %}
-{% load i18n reference_extras staticfiles %}
+{% load i18n %}
 
 
 {% block content %}
@@ -14,14 +14,14 @@
 </div>
 -->
 
-{% for aoi in applicant.areaofinterest_set.all %}
+{% for area in areas %}
 <div class="row spacey">
 <div class="panel panel-default center group-description">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ aoi.name }}</h3>
+        <h3 class="panel-title">{{ area.name }}</h3>
       </div>
       <div class="panel-body">
-        {{ aoi.description }}
+        {{ area.description }}
       </div>
     </div>
 </div>

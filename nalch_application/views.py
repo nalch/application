@@ -57,8 +57,28 @@ def references(request, applicant):
 
 
 def areasofinterest(request, applicant):
+    context = get_shared_context(request, applicant, 'areasofinterest')
+    context.update(
+            {
+                'areas': get_object_or_404(Applicant, user__username=applicant).areas_of_interest.all()
+            }
+    )
     return render_to_response(
-            'application/interestareas.html',
-            get_shared_context(request, applicant, 'areasofinterest'),
+            'application/areas.html',
+            context,
+            context_instance=RequestContext(request)
+    )
+
+
+def areasofexpertise(request, applicant):
+    context = get_shared_context(request, applicant, 'areasofexpertise')
+    context.update(
+            {
+                'areas': get_object_or_404(Applicant, user__username=applicant).areas_of_expertise.all()
+            }
+    )
+    return render_to_response(
+            'application/areas.html',
+            context,
             context_instance=RequestContext(request)
     )

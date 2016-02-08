@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-31 14:31+0000\n"
-"PO-Revision-Date: 2016-01-31 15:32+0100\n"
+"POT-Creation-Date: 2016-02-08 19:10+0000\n"
+"PO-Revision-Date: 2016-02-08 20:11+0100\n"
 "Last-Translator: Kristian Scholze <Scholze.Kristian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,39 +17,51 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: application/settings.py:64
+#: application/settings.py:73
 msgid "German"
 msgstr "Deutsch"
 
-#: application/settings.py:65
+#: application/settings.py:74
 msgid "English"
 msgstr "Englisch"
 
-#: nalch_application/models.py:99
+#: nalch_application/models.py:125
 msgid "basic knowledge"
 msgstr "Grundwissen"
 
-#: nalch_application/models.py:100
+#: nalch_application/models.py:126
 msgid "working knowledge"
 msgstr "Fortgeschritten"
 
-#: nalch_application/models.py:101
+#: nalch_application/models.py:127
 msgid "advanced knowledge"
 msgstr "Expertenwissen"
 
-#: nalch_application/templates/application/navigation.html:18
+#: nalch_application/templates/application/areas.html:12
+msgid "Interesting"
+msgstr ""
+
+#: nalch_application/templates/application/navigation.html:19
 msgid "Home"
 msgstr "Home"
 
-#: nalch_application/templates/application/navigation.html:21
+#: nalch_application/templates/application/navigation.html:23
 msgid "Contact"
 msgstr "Kontakt"
 
-#: nalch_application/templates/application/navigation.html:26
+#: nalch_application/templates/application/navigation.html:28
+msgid "Areas of interest"
+msgstr "Interessensgebiete"
+
+#: nalch_application/templates/application/navigation.html:34
+msgid "Areas of expertise"
+msgstr "Fachliche Kenntnisse"
+
+#: nalch_application/templates/application/navigation.html:42
 msgid "References"
 msgstr "Referenzen"
 
-#: nalch_application/templates/application/navigation.html:29
+#: nalch_application/templates/application/navigation.html:45
 msgid "Overview"
 msgstr "Überblick"
 
@@ -66,23 +78,23 @@ msgstr ""
 msgid "Projects"
 msgstr "Projekte"
 
-#: nalch_application/templates/application/references.html:37
+#: nalch_application/templates/application/templatetags/reference.html:17
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: nalch_application/templates/application/references.html:44
+#: nalch_application/templates/application/templatetags/reference.html:28
 msgid "Tags"
 msgstr "Schlagworte"
 
-#: nalch_application/templates/application/references.html:48
+#: nalch_application/templates/application/templatetags/reference.html:37
 msgid "Technologies"
 msgstr "Technologien"
 
-#: nalch_application/templates/application/templatetags/reference_table.html:5
+#: nalch_application/templates/application/templatetags/reference_table.html:10
 msgid "Group"
 msgstr "Bereich"
 
-#: nalch_application/templates/application/templatetags/reference_table.html:6
+#: nalch_application/templates/application/templatetags/reference_table.html:11
 #, fuzzy
 #| msgid "Projects"
 msgid "Project"

@@ -55,11 +55,22 @@ class Group(TranslatableNameMixin):
         return self.short_name_en
 
 
+class WorkingArea(TranslatableNameMixin, TagnologyMixin):
+    description = models.TextField()
+    order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
+    class Meta(object):
+        ordering = ('order', )
+
+
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthday = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(blank=True, null=True)
+
+    areas_of_interest = models.ManyToManyField(WorkingArea, blank=True, null=True, related_name='interests')
+    areas_of_expertise = models.ManyToManyField(WorkingArea, blank=True, null=True, related_name='expertises')
 
     def __unicode__(self):
         return self.user.username
@@ -129,12 +140,3 @@ class WeightedTag(models.Model):
 
     def __unicode__(self):
         return '%s@%s' % (self.tag.name, self.weight)
-
-
-class AreaOfInterest(TranslatableNameMixin, TagnologyMixin):
-    user = models.ForeignKey(Applicant)
-    description = models.TextField()
-    order = models.PositiveIntegerField(default=0, blank=False, null=False)
-
-    class Meta(object):
-        ordering = ('order', )
