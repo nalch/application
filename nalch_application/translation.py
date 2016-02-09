@@ -5,6 +5,8 @@ from modeltranslation.translator import (
 
 from .models import (
     Applicant,
+    AreaOfInterest,
+    AreaOfKnowledge,
     Attachment,
     ContactDetail,
     Group,
@@ -13,7 +15,6 @@ from .models import (
     Tag,
     Technology,
     TranslatableNameMixin,
-    WorkingArea,
 )
 
 
@@ -53,7 +54,7 @@ class GroupTranslationOptions(TNMTranslationOptions):
     fields = ('description', 'short_name', )
 
 
-class WorkingAreaTranslationOptions(TNMTranslationOptions):
+class AreaMixinTranslationOptions(TNMTranslationOptions):
     fields = ('description', )
 
 
@@ -66,5 +67,5 @@ translator.register(Attachment, AttachmentTranslationOptions)
 translator.register(Tag, TagTranslationOptions)
 translator.register(Technology, TagTranslationOptions)
 translator.register(Group, GroupTranslationOptions)
-translator.register(WorkingArea, WorkingAreaTranslationOptions)
-
+translator.register(AreaOfInterest, AreaMixinTranslationOptions)
+translator.register(AreaOfKnowledge, AreaMixinTranslationOptions)

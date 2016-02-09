@@ -55,12 +55,21 @@ class Group(TranslatableNameMixin):
         return self.short_name_en
 
 
-class WorkingArea(TranslatableNameMixin, TagnologyMixin):
+class AreaMixin(TranslatableNameMixin, TagnologyMixin):
     description = models.TextField()
     order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     class Meta(object):
+        abstract = True
         ordering = ('order', )
+
+
+class AreaOfInterest(AreaMixin):
+    pass
+
+
+class AreaOfKnowledge(AreaMixin):
+    pass
 
 
 class Applicant(models.Model):
@@ -69,8 +78,8 @@ class Applicant(models.Model):
     address = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(blank=True, null=True)
 
-    areas_of_interest = models.ManyToManyField(WorkingArea, blank=True, null=True, related_name='interests')
-    areas_of_expertise = models.ManyToManyField(WorkingArea, blank=True, null=True, related_name='expertises')
+    areas_of_interest = models.ManyToManyField(AreaOfInterest, blank=True, null=True, related_name='interests')
+    areas_of_expertise = models.ManyToManyField(AreaOfKnowledge, blank=True, null=True, related_name='expertises')
 
     def __unicode__(self):
         return self.user.username

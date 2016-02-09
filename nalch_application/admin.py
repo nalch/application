@@ -9,6 +9,8 @@ from modeltranslation.admin import (
 
 from .models import (
     Applicant,
+    AreaOfInterest,
+    AreaOfKnowledge,
     Attachment,
     ContactDetail,
     Group,
@@ -18,7 +20,6 @@ from .models import (
     Tag,
     Technology,
     WeightedTag,
-    WorkingArea,
 )
 
 
@@ -77,8 +78,12 @@ class ProjectAdmin(SortableAdminMixin, TranslationAdmin):
     list_display = ('short_name', 'name', 'publish', 'user')
 
 
-class WorkingAreaAdmin(SortableAdminMixin, TranslationAdmin):
-    model = WorkingArea
+class AreaOfKnowledgeAdmin(SortableAdminMixin, TranslationAdmin):
+    pass
+
+
+class AreaOfInterestAdmin(SortableAdminMixin, TranslationAdmin):
+    pass
 
 
 admin.site.register(Tag, TagAdmin)
@@ -87,4 +92,5 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(KnowledgeLevel, KnowledgeLevelAdmin)
-admin.site.register(WorkingArea, WorkingAreaAdmin)
+admin.site.register(AreaOfInterest, AreaOfInterestAdmin)
+admin.site.register(AreaOfKnowledge, AreaOfKnowledgeAdmin)
