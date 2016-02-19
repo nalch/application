@@ -1,0 +1,38 @@
+{% load i18n %}
+
+<div id="{{ reference.public_name }}" class="container spacey">
+
+  <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><b>{{ reference.name }}</b></h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ reference.description|safe }}
+
+                    <hr/>
+
+                    {% if reference.tags.all|length > 0 %}
+                        {% trans 'Tags' %}<br/>
+                        {% for tag in reference.tags.all %}
+                            <span class="label" style="background: {{ tag.color }}">{{ tag }}</span>
+                        {% endfor %}
+                        <br/>
+                        <br/>
+                    {% endif %}
+
+                    {% if reference.technologies.all|length > 0 %}
+                        {% trans 'Technologies' %}<br/>
+                        <ul>
+                        {% for tech in reference.technologies.all %}
+                            <li>{{ tech }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+          </div>
+        </div>
+      </div>
+
+</div>

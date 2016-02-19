@@ -31,9 +31,17 @@ def knowledge_level(tag, project):
 
 
 @register.simple_tag
-def reference(group, reference_item):
+def reference(reference_item, group=None):
     context_dict = {
         'group': group,
         'reference': reference_item,
     }
     return render_to_string('application/templatetags/reference.html', context_dict)
+
+
+@register.simple_tag
+def small_reference(reference_item):
+    context_dict = {
+        'reference': reference_item,
+    }
+    return render_to_string('application/templatetags/small_reference.html', context_dict)
