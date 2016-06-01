@@ -51,10 +51,7 @@ def contact(request, applicant):
 
 def references(request, applicant, reference):
     context = get_shared_context(request, applicant, 'references')
-    print 'test'
     current_ref = Project.objects.filter(publish=True, user__user__username=applicant, short_name=reference).first()
-    print reference
-    print current_ref
     if current_ref is None:
         current_ref = Project.objects.filter(publish=True, user__user__username=applicant).first()
     context.update(
