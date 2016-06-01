@@ -12,4 +12,7 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', [
     'thumbs-up',
     'check',
     'wrench',
+    'phone',
+    'mobile',
+    'map-marker',
 ])

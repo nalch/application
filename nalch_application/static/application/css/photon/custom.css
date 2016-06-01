@@ -1,0 +1,7 @@
+.main.style2 ul.major-icons li .icon {
+  background: rgba(50,50,50,0.85);
+}
+
+.main.style2 ul.major-icons li .devicon::before {
+  font-family: devicon;
+}

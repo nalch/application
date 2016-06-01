@@ -1,8 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import (
     get_object_or_404,
     render_to_response
 )
 from django.template import RequestContext
+from django.template.loader import select_template
 
 from itertools import chain
 
@@ -47,12 +49,23 @@ def contact(request, applicant):
     )
 
 
-def references(request, applicant):
+def references(request, applicant, reference):
     context = get_shared_context(request, applicant, 'references')
+    print 'test'
+    current_ref = Project.objects.filter(publish=True, user__user__username=applicant, short_name=reference).first()
+    print reference
+    print current_ref
+    if current_ref is None:
+        current_ref = Project.objects.filter(publish=True, user__user__username=applicant).first()
+    context.update(
+        {
+            'current_reference': current_ref
+        }
+    )
     return render_to_response(
-            'application/references.html',
-            context,
-            context_instance=RequestContext(request)
+        'application/%s/references.html' % 'photon',
+        context,
+        context_instance=RequestContext(request)
     )
 
 
