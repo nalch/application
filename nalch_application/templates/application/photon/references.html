@@ -30,21 +30,22 @@
 		<!-- Header -->
 			<section id="header">
 				<div class="inner">
-					<form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}
-                <div class="form-group">
-                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select class="form-control" name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                            <a href="">{{ language.name_local }} ({{ language.code }})</a>
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </form>
+					<form action="{% url 'set_language' %}" method="post" id="language-switcher" role="language">{% csrf_token %}
+						<div class="form-group">
+							<input name="next" type="hidden" value="{{ redirect_to }}"/>
+							<input id="language" name="language" type="hidden" value="{{ language.code }}"/>
+
+							{% get_current_language as LANGUAGE_CODE %}
+							{% get_available_languages as LANGUAGES %}
+							{% get_language_info_list for LANGUAGES as languages %}
+							<ul class="navbar-right nav nav-pills nav-stacked">
+							{% for language in languages %}
+								<li class="language-link nav-item"><a class="nav-link" value="{{ language.code }}">{{ language.name_local }} ({{ language.code }})</a></li>
+							{% endfor %}
+							</ul>
+						</div>
+					</form>
+
 					<span class="icon major fa-terminal"></span>
 					<h1>Hi, I'm <strong>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</strong>, another fine<br />
 					little freebie from <a href="http://html5up.net">HTML5 UP</a>.</h1>
@@ -233,6 +234,6 @@
 			<script src="{% static 'application/js/photon/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/respond.min.js' %}"></script><![endif]-->
 			<script src="{% static 'application/js/photon/main.js' %}"></script>
-			<script src="{% static 'application/js/language-switcher.js' %}"></script>
+			<script src="{% static 'application/js/photon/language-switcher.js' %}"></script>
 	</body>
 </html>
