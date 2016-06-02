@@ -169,7 +169,7 @@
 								<h3>{{ reference.name }}</h3>
 								<p>tags and techs</p>
 								<ul class="actions">
-									<li><a href="{% url 'references' applicant.user.username reference.short_name %}#reference" class="button">{% trans 'More' %}</a></li>
+									<li><a href="{% url 'references' applicant.user.username reference.public_name %}#reference" class="button">{% trans 'More' %}</a></li>
 								</ul>
 							</div>
 
