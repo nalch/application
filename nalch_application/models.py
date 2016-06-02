@@ -88,6 +88,10 @@ class Applicant(models.Model):
     areas_of_interest = models.ManyToManyField(AreaOfInterest, blank=True, null=True, related_name='interests')
     areas_of_expertise = models.ManyToManyField(AreaOfKnowledge, blank=True, null=True, related_name='expertises')
 
+    @property
+    def contact_links(self):
+        return self.contactdetail_set.filter(link=True)
+
     def __unicode__(self):
         return self.user.username
 
@@ -112,6 +116,10 @@ class Project(TranslatableNameMixin):
     def public_name(self):
         return self.short_name_en
 
+    @property
+    def icons(self):
+        return self.technologies.filter(icon__in=app_settings.FONTICONS)
+
     class Meta(object):
         ordering = ('order',)
 
@@ -129,6 +137,7 @@ class ProjectImage(TranslatableNameMixin):
 
 class ContactDetail(TranslatableNameMixin, IconMixin):
     applicant = models.ForeignKey(Applicant, blank=True, null=True)
+    link = models.BooleanField(default=False)
 
     def __unicode__(self):
         return '%s: %s' % (self.applicant, self.name)

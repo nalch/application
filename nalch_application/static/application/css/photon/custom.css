@@ -10,3 +10,34 @@ a:focus, a:hover {
     color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
 }
+
+#reference ul.technologies {
+    list-style-type: none;
+}
+
+#reference ul.technologies li {
+    border-left: solid 1px;
+    display: inline-block;
+    line-height: 1em;
+    margin-left: 1em;
+    padding: 0 0 0 1em;
+}
+
+#reference ul.technologies li:first-child {
+    border-left: 0;
+    margin-left: 0;
+    padding: 0;
+}
+
+#footer h4 {
+    margin-bottom: 0;
+}
+
+#footer ul.contactdetails {
+    list-style: none;
+    padding-left: 0;
+}
+
+#footer ul.contactdetails li.icon:before {
+    padding-right: 10px;
+}
