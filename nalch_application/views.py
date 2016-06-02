@@ -60,7 +60,7 @@ def references(request, applicant, reference):
         }
     )
     return render_to_response(
-        'application/%s/references.html' % 'photon',
+        'application/%s/references.html' % context['applicant'].template,
         context,
         context_instance=RequestContext(request)
     )

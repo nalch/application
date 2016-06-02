@@ -21,20 +21,20 @@ class TranslatableNameMixin(models.Model):
 class IconMixin(models.Model):
     icon = models.CharField(
         default='',
-        choices=[(icon, _(icon)) for icon in app_settings.ICONS],
+        choices=[(icon, _(icon)) for icon in app_settings.ICONS.keys()],
         max_length=200,
-        help_text='a bootstrap icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
+        help_text='a bootstrap or font awesome icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
     )
 
     class Meta:
         abstract = True
 
 
-class Tag(TranslatableNameMixin):
+class Tag(TranslatableNameMixin, IconMixin):
     color = RGBColorField()
 
 
-class Technology(TranslatableNameMixin):
+class Technology(TranslatableNameMixin, IconMixin):
     pass
 
 
@@ -77,6 +77,13 @@ class Applicant(models.Model):
     birthday = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(blank=True, null=True)
+    template = models.CharField(
+            blank=True,
+            null=True,
+            max_length=250,
+            default='photon',
+            choices=[(template, _(template)) for template in app_settings.TEMPLATES],
+    )
 
     areas_of_interest = models.ManyToManyField(AreaOfInterest, blank=True, null=True, related_name='interests')
     areas_of_expertise = models.ManyToManyField(AreaOfKnowledge, blank=True, null=True, related_name='expertises')

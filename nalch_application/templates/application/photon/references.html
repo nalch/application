@@ -1,4 +1,4 @@
-{% load i18n staticfiles %}
+{% load i18n reference_extras staticfiles %}
 
 <!DOCTYPE HTML>
 <!--
@@ -15,6 +15,8 @@
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Bootstrap core CSS -->
+    	<link href="{% static 'application/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 		<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/html5shiv.js' %}"></script><![endif]-->
 		<link rel="stylesheet" href="{% static 'application/css/photon/main.css' %}" />
         <link rel="stylesheet" href="{% static 'application/css/photon/devicon.min.css' %}">
@@ -28,13 +30,28 @@
 		<!-- Header -->
 			<section id="header">
 				<div class="inner">
+					<form action="{% url 'set_language' %}" method="post" id="language-switcher" class="navbar-form navbar-right" role="language">{% csrf_token %}
+                <div class="form-group">
+                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                    <select class="form-control" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                            <a href="">{{ language.name_local }} ({{ language.code }})</a>
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
 					<span class="icon major fa-terminal"></span>
 					<h1>Hi, I'm <strong>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</strong>, another fine<br />
 					little freebie from <a href="http://html5up.net">HTML5 UP</a>.</h1>
 					<p>Accumsan feugiat mi commodo erat lorem ipsum, sed magna<br />
 					lobortis feugiat sapien sed etiam volutpat accumsan.</p>
 					<ul class="actions">
-						<li><a href="#overview" class="button scrolly">{% trans 'Discover' %}</a></li>
+						<li><a href="#overview" class="button scrolly">{% trans 'Discover projects' %}</a></li>
 					</ul>
 				</div>
 			</section>
@@ -51,7 +68,20 @@
 							<p>Adipiscing a commodo ante nunc accumsan et interdum mi ante adipiscing. A nunc lobortis non nisl amet vis sed volutpat aclacus nascetur ac non. Lorem curae et ante amet sapien sed tempus adipiscing id accumsan.</p>
 						</div>
 						<div class="6u$ 12u$(medium) important(medium)">
-							<span class="image fit"><img src="images/pic01.jpg" alt="" /></span>
+							<ul class="nav nav-pills nav-stacked">
+										<li class="nav-item">
+										<a class="nav-link active" href="#">Active</a>
+										</li>
+										<li class="nav-item">
+										<a class="nav-link" href="#">Link</a>
+										</li>
+										<li class="nav-item">
+										<a class="nav-link" href="#">Another link</a>
+										</li>
+										<li class="nav-item">
+										<a class="nav-link disabled" href="#">Disabled</a>
+										</li>
+									</ul>
 						</div>
 					</div>
 				</div>
@@ -65,14 +95,19 @@
 							<ul class="major-icons">
                                 <li><span class="icon style1 major fa-code"></span></li>
 								<li><span class="icon style2 major fa-wrench"></span></li>
-								<li><span class="icon style4 major fa-cogs"></span></li>
-                                <li> <i class="icon devicon major devicon-nginx-original colored"></i></li>
-                                <li> <i class="icon devicon major devicon-django-plain"></i></li>
-                                <li> <i class="icon devicon major devicon-mongodb-plain-wordmark colored"></i></li>
-                                <li> <i class="icon devicon major devicon-postgresql-plain-wordmark colored"></i></li>
-                                <li> <i class="icon devicon major devicon-linux-plain"></i></li>
-								<li> <i class="icon devicon major devicon-git-plain colored"></i></li>
-								<li><i class="icon devicon major devicon-git-plain-wordmark colored"></i></li>
+								<!--<li><span class="icon style4 major fa-cogs"></span></li>-->
+                                <!--<li> <i class="icon devicon major devicon-nginx-original colored"></i></li>-->
+                                <!--<li> <i class="icon devicon major devicon-django-plain"></i></li>-->
+                                <!--<li> <i class="icon devicon major devicon-mongodb-plain-wordmark colored"></i></li>-->
+                                <!--<li> <i class="icon devicon major devicon-postgresql-plain-wordmark colored"></i></li>-->
+                                <!--<li> <i class="icon devicon major devicon-linux-plain"></i></li>-->
+								<!--<li> <i class="icon devicon major devicon-git-plain colored"></i></li>-->
+								<!--<li><i class="icon devicon major devicon-git-plain-wordmark colored"></i></li>-->
+								<!--<li><span class="icon major style1 fa-code"></span></li>-->
+								<!--<li><i class="icon major devicon devicon-linux-plain"></i></li>-->
+								{% for technology in current_reference.technologies.all %}
+							  		<li><span class="icon major {% icon_css technology %}"></span></li>
+								{% endfor %}
 							</ul>
 						</div>
 						<div class="6u$ 12u$(medium)">
@@ -80,6 +115,31 @@
 								<h2>{{ current_reference.short_name }}</h2>
 							</header>
 							<p>{{ current_reference.description|safe }}</p>
+
+							{% if current_reference.attachment_set.all|length > 0 %}
+		                        <h3>{% trans 'Attachments' %}</h3>
+        		                <ul>
+									{% for attachment in current_reference.attachment_set.all %}
+									<li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
+                            		{% endfor %}
+                        		</ul>
+                    		{% endif %}
+
+		                    {% if current_reference.weightedtag_set.all|length > 0 %}
+        		                <h3>{% trans 'Tags' %}</h3>
+								{% for weighted_tag in current_reference.weightedtag_set.all %}
+									<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
+								{% endfor %}
+                        	{% endif %}
+
+							{% if current_reference.technologies.all|length > 0 %}
+								<h3>{% trans 'Technologies' %}<h3/>
+								<ul>
+								{% for tech in current_reference.technologies.all %}
+									<li>{{ tech }}</li>
+								{% endfor %}
+								</ul>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -459,6 +519,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
                     <li><a href="https://github.com/nalch" class="icon fa-github"><span class="label">Github</span></a></li>
                     <li><a href="mailto:{{ applicant.user.email }}" class="icon fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
+				<ul class="icons">
+					{% for contact in applicant.contactdetail_set.all %}
+					<li><a href="{% if contact.icon == 'envelope' %}mailto:{% endif %}{{ contact.name }}" class="icon {% icon_css contact %}"><span class="label"></span></a></li>
+					{% endfor %}
+				</ul>
 				<ul class="copyright">
 					<li>&copy; Kristian Scholze 2016</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
@@ -471,6 +536,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="{% static 'application/js/photon/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/respond.min.js' %}"></script><![endif]-->
 			<script src="{% static 'application/js/photon/main.js' %}"></script>
-
+			<script src="{% static 'application/js/language-switcher.js' %}"></script>
 	</body>
 </html>
