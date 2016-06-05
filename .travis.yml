@@ -4,6 +4,6 @@ python:
     - "3.4"
 before_install:
     - pip install -r requirements.txt
-    - pip install pytest pytest-cov
+    - pip install pytest pytest-cov pytest-django model-mommy
 script:
     - py.test
