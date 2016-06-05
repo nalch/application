@@ -7,10 +7,11 @@ from django.conf.urls import (
 from django.conf.urls.static import static
 from django.contrib import admin
 
-urlpatterns = patterns('',
-    url(r'^application/', include('nalch_application.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
+urlpatterns = patterns(
+        '',
+        url(r'^application/', include('nalch_application.urls')),
+        url(r'^admin/', include(admin.site.urls)),
+        url(r'^i18n/', include('django.conf.urls.i18n')),
 )
 
 if settings.DEBUG:

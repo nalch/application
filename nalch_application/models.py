@@ -23,7 +23,7 @@ class IconMixin(models.Model):
         default='',
         choices=[(icon, _(icon)) for icon in app_settings.ICONS.keys()],
         max_length=200,
-        help_text='a bootstrap or font awesome icon, f.e. home, bullhorn, envelope, globe, etc.\nSee: http://getbootstrap.com/components/#glyphicons-glyphs'
+        help_text='a bootstrap or font awesome icon'
     )
 
     class Meta:

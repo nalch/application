@@ -58,7 +58,8 @@ def icon_css(iconmixin):
         key missing -> iconmixin
         'icon': {} -> 'icon'
         'icon': {'devicon_css': 'devicon_class someother'} -> 'devicon_class someother'
-        'icon': {'fontawesome_css': 'fontawesome', 'devicon_css': 'devicon_class someother'} -> 'devicon_class someother'
+        'icon': {'fontawesome_css': 'fontawesome', 'devicon_css': 'devicon_class someother'}
+            -> 'devicon_class someother'
         'icon': {'fontawesome_css': 'fontawesome'} -> 'fontawesome'
     """
     if iconmixin.icon in ICONS:

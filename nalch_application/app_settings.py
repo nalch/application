@@ -36,6 +36,24 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'linux': {
         'devicon_css': 'devicon devicon-linux-plain',
     },
+    'travis': {
+        'devicon_css': 'devicon devicon-travis-plain-wordmark',
+    },
+    'angularjs': {
+        'devicon_css': 'devicon devicon-angularjs-plain-wordmark colored',
+    },
+    'javascript': {
+        'devicon_css': 'devicon devicon-javascript-plain colored',
+    },
+    'jquery': {
+        'devicon_css': 'devicon devicon-jquery-plain-wordmark colored',
+    },
+    'html5': {
+        'devicon_css': 'devicon devicon-html5-plain-wordmark colored',
+    },
+    'java': {
+        'devicon_css': 'devicon devicon-java-plain-wordmark colored',
+    },
     'kibana': {
         'fontawesome_css': 'style2 fa-area-chart',
     },
