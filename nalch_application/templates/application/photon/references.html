@@ -144,6 +144,24 @@
 								</ul>
 								</p>
 							{% endif %}
+
+							{% if current_reference.images.all|length > 0 %}
+								<p>
+								<h3>{% trans 'Images' %}</h3>
+								<div class="inner gallery">
+									<div class="row 0%">
+										{% for image in current_reference.images.all %}
+											<div class="3u 12u(mobile)">
+												<a href="{{ image.image.url }}" title="{{ image.name }}" class="image">
+													<img src="{{ image.thumbnail.url }}" alt="{{ image.name }}" title="{{ image.name }}" />
+													<p class="caption">{{ image.name }}</p>
+												</a>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+								</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -227,6 +245,7 @@
 		<!-- Scripts -->
 			<script src="{% static 'application/js/photon/jquery.min.js' %}"></script>
 			<script src="{% static 'application/js/photon/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'application/js/photon/jquery.poptrox.min.js' %}"></script>
 			<script src="{% static 'application/js/photon/skel.min.js' %}"></script>
 			<script src="{% static 'application/js/photon/util.js' %}"></script>
 			<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/respond.min.js' %}"></script><![endif]-->

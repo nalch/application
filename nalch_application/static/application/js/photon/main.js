@@ -43,6 +43,26 @@
 		// Scrolly.
 			$('.scrolly').scrolly();
 
+		// Poptrox.
+			$('.gallery').poptrox({
+			    caption: { selector: ".caption", remove: true},
+				useBodyOverflow: false,
+				usePopupEasyClose: false,
+				overlayColor: '#0a1919',
+				overlayOpacity: (skel.vars.IEVersion < 9 ? 0 : 0.75),
+				usePopupDefaultStyling: true,
+				usePopupCaption: true,
+				popupLoaderText: '',
+				windowMargin: 10,
+				usePopupNav: true,
+				popupCloserTextColor:   '#000000',
+			    popupCloserBackgroundColor: '#FFFFFF'
+			});
+
+
+
+
+
 	});
 
 })(jQuery);
