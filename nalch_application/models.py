@@ -96,6 +96,12 @@ class Applicant(models.Model):
         return self.user.username
 
 
+class Description(IconMixin):
+    description = models.TextField()
+
+    user = models.OneToOneField(Applicant)
+
+
 class Project(TranslatableNameMixin):
     """
     model to represent projects with names, descriptions, images and tags

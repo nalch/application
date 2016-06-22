@@ -9,6 +9,7 @@ from .models import (
     AreaOfKnowledge,
     Attachment,
     ContactDetail,
+    Description,
     Group,
     Project,
     ProjectImage,
@@ -23,7 +24,11 @@ class TNMTranslationOptions(TranslationOptions):
 
 
 class ApplicantTranslationOptions(TranslationOptions):
-    fields = ('address',)
+    fields = ('address', )
+
+
+class DescriptionTranslationOptions(TranslationOptions):
+    fields = ('description', )
 
 
 class ContactDetailTranslationOptions(TNMTranslationOptions):
@@ -61,6 +66,7 @@ class AreaMixinTranslationOptions(TNMTranslationOptions):
 translator.register(TranslatableNameMixin, TNMTranslationOptions)
 translator.register(Applicant, ApplicantTranslationOptions)
 translator.register(ContactDetail, ContactDetailTranslationOptions)
+translator.register(Description, DescriptionTranslationOptions)
 translator.register(Project, ProjectTranslationOptions)
 translator.register(ProjectImage, ProjectImageTranslationOptions)
 translator.register(Attachment, AttachmentTranslationOptions)

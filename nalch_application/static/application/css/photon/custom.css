@@ -1,3 +1,15 @@
+#header {
+  padding-top: 25px;
+}
+
+.clearfix:after {
+  content: ".";
+  clear: both;
+  display: block;
+  visibility: hidden;
+  height: 0px;
+}
+
 .main.style2 ul.major-icons li .icon {
   background: rgba(50,50,50,0.85);
 }
@@ -7,50 +19,54 @@
 }
 
 a:focus, a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #reference ul.technologies {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 #reference ul.technologies li {
-    border-left: solid 1px;
-    display: inline-block;
-    line-height: 1em;
-    margin-left: 1em;
-    padding: 0 0 0 1em;
+  border-left: solid 1px;
+  display: inline-block;
+  line-height: 1em;
+  margin-left: 1em;
+  padding: 0 0 0 1em;
 }
 
 #reference ul.technologies li:first-child {
-    border-left: 0;
-    margin-left: 0;
-    padding: 0;
+  border-left: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
 #footer h4 {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 #footer ul.contactdetails {
-    list-style: none;
-    padding-left: 0;
+  list-style: none;
+  padding-left: 0;
 }
 
 #footer ul.contactdetails li.icon:before {
-    padding-right: 10px;
+  padding-right: 10px;
+}
+
+#language-switcher {
+  margin: 0;
 }
 
 #language-switcher ul.navbar-right {
-    list-style: none;
-    margin-right: 5px;
+  list-style: none;
+  margin-right: 5px;
 }
 
 #language-switcher ul.navbar-right li {
-    display: block;
+  display: block;
 }
 
 #language-switcher ul.navbar-right li>a:focus, #language-switcher ul.navbar-right li>a:hover {
-    background-color: rgba(255, 255, 255, 0);
-    cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
 }

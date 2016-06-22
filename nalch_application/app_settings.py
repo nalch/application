@@ -72,5 +72,8 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'elasticsearch': {
         'fontawesome_css': 'fa-search',
     },
+    'terminal': {
+        'fontawesome_css': 'fa-terminal',
+    },
 })
 FONTICONS = filter(lambda icon: 'fontawesome_css' in ICONS[icon] or 'devicon_css' in ICONS[icon], ICONS)

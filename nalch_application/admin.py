@@ -13,6 +13,7 @@ from .models import (
     AreaOfKnowledge,
     Attachment,
     ContactDetail,
+    Description,
     Group,
     KnowledgeLevel,
     Project,
@@ -23,13 +24,17 @@ from .models import (
 )
 
 
+class DescriptionInline(TranslationTabularInline):
+    model = Description
+
+
 class ContactDetailInline(TranslationTabularInline):
     model = ContactDetail
     extra = 0
 
 
 class ApplicantAdmin(TranslationAdmin):
-    inlines = [ContactDetailInline, ]
+    inlines = [DescriptionInline, ContactDetailInline, ]
 
 
 class ContactDetailAdmin(TranslationAdmin):
