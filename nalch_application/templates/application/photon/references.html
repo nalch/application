@@ -1,4 +1,4 @@
-{% load i18n reference_extras staticfiles %}
+{% load i18n reference_extras render_template staticfiles %}
 
 <!DOCTYPE HTML>
 <!--
@@ -30,7 +30,7 @@
 		<!-- Header -->
 			<section id="header">
 				<div class="inner">
-					<form action="{% url 'set_language' %}" method="post" id="language-switcher" role="language">{% csrf_token %}
+					<form action="{% url 'set_language' %}" method="post" id="language-switcher" role="language" class="clearfix">{% csrf_token %}
 						<div class="form-group">
 							<input name="next" type="hidden" value="{{ redirect_to }}"/>
 							<input id="language" name="language" type="hidden" value="{{ language.code }}"/>
@@ -46,11 +46,9 @@
 						</div>
 					</form>
 
-					<span class="icon major fa-terminal"></span>
-					<h1>Hi, I'm <strong>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</strong>, another fine<br />
-					little freebie from <a href="http://html5up.net">HTML5 UP</a>.</h1>
-					<p>Accumsan feugiat mi commodo erat lorem ipsum, sed magna<br />
-					lobortis feugiat sapien sed etiam volutpat accumsan.</p>
+					<span class="icon major descriptionicon {% icon_css applicant.description %}"></span><br/>
+					{% render_template applicant.description.description applicant=applicant %}
+
 					<ul class="actions">
 						<li><a href="#overview" class="button scrolly">{% trans 'Discover projects' %}</a></li>
 					</ul>
