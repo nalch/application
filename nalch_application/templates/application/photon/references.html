@@ -64,7 +64,11 @@
 								<h2>Lorem ipsum dolor adipiscing<br />
 								amet dolor consequat</h2>
 							</header>
-							<p>Adipiscing a commodo ante nunc accumsan et interdum mi ante adipiscing. A nunc lobortis non nisl amet vis sed volutpat aclacus nascetur ac non. Lorem curae et ante amet sapien sed tempus adipiscing id accumsan.</p>
+							<p>{% blocktrans %}
+								This page gives a brief overview over the projects I realized or worked on. Please use the overview to choose any interesting project
+								regarding the used technologies or the areas covered by the tags.
+								{% endblocktrans %}
+							</p>
 						</div>
 						<div class="6u$ 12u$(medium) important(medium)">
 							<ul class="nav nav-pills nav-stacked">
@@ -178,9 +182,27 @@
 
 						{% for reference in grouped_references %}
 							<div class="4u 12u$(medium)">
-								<span class="image fit"><img src="{{ reference.title_thumbnail.url }}" alt="{{ reference.name }}"/></span>
 								<h3>{{ reference.name }}</h3>
-								<p>tags and techs</p>
+								<span class="image fit"><img src="{{ reference.title_thumbnail.url }}" alt="{{ reference.name }}"/></span>
+
+								{% if reference.weightedtag_set.all|length > 0 %}
+									<p>
+									{% for weighted_tag in reference.weightedtag_set.all %}
+										<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
+									{% endfor %}
+									</p>
+								{% endif %}
+
+								{% if reference.technologies.all|length > 0 %}
+									<p>
+									<ul class="technologies">
+									{% for tech in reference.technologies.all %}
+										<li>{{ tech }}</li>
+									{% endfor %}
+									</ul>
+									</p>
+								{% endif %}
+
 								<ul class="actions">
 									<li><a href="{% url 'references' applicant.user.username reference.public_name %}#reference" class="button">{% trans 'More' %}</a></li>
 								</ul>
