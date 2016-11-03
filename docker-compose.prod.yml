@@ -1,0 +1,32 @@
+version: '2'
+services:
+  app:
+    build: .
+    volumes:
+      - nginx_html
+      - app_path
+      - var_path
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    networks:
+      default: {}
+      nginx-net: {}
+
+  postgres:
+    image: postgres:9
+    environment:
+
+volumes:
+  app_path:
+    external: true
+  var_path:
+    external: true
+  nginx_html:
+    external: true
+
+networks:
+  nginx-net:
+    external:
+      name: nginx-net
