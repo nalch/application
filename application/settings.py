@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+STAGE = os.environ['STAGE']
 
 # settings up settings pipeline
 server_settings = {}
@@ -18,7 +19,7 @@ for settings_file in glob.glob(os.path.join(BASE_DIR, 'application', 'settings_p
 # import stage settings
 try:
     tmp = server_settings.copy()
-    tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', os.environ['STAGE'], '.json')))
+    tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', STAGE, '.json')))
     server_settings = tmp
 except KeyError:
     pass

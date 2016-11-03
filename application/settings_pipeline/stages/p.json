@@ -6,10 +6,11 @@
     "MEDIA_ROOT": "/var/www/html/media",
     "DATABASES": {
         "default": {
-            "ENGINE": "django.db.backends.postgres",
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "application",
             "USER": "application",
-            "PASSWORD": "application"
+            "PASSWORD": "application",
+            "HOST": "postgres"
         }
     }
 }
