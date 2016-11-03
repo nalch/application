@@ -20,15 +20,17 @@ tmp = server_settings.copy()
 tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', 'p', '.json')))
 server_settings = tmp
 
-with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
-    SECRET_KEY = f.read().strip()
+try:
+    with open(os.path.join(BASE_DIR, 'secret_key')) as f:
+        SECRET_KEY = f.read().strip()
+except IOError:
+    SECRET_KEY = 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih'
 
 # paths
 STATIC_ROOT = server_settings.get('STATIC_ROOT', os.path.join('static'))
 MEDIA_ROOT = server_settings.get('MEDIA_ROOT', os.path.join('media'))
 
 # server settings
-SECRET_KEY = server_settings.get('SECRET_KEY', 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih')
 DEBUG = server_settings.get('DEBUG', True)
 TEMPLATE_DEBUG = server_settings.get('TEMPLATE_DEBUG', True)
 ALLOWED_HOSTS = server_settings.get('ALLOWED_HOSTS', [])
