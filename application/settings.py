@@ -16,9 +16,12 @@ for settings_file in glob.glob(os.path.join(BASE_DIR, 'application', 'settings_p
         server_settings = tmp
 
 # import stage settings
-tmp = server_settings.copy()
-tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', 'p', '.json')))
-server_settings = tmp
+try:
+    tmp = server_settings.copy()
+    tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', os.environ['STAGE'], '.json')))
+    server_settings = tmp
+except KeyError:
+    pass
 
 try:
     with open(os.path.join(BASE_DIR, 'secret_key')) as f:
