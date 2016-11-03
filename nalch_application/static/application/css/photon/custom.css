@@ -22,11 +22,11 @@ a:focus, a:hover {
   text-decoration: none;
 }
 
-#reference ul.technologies {
+ul.technologies {
   list-style-type: none;
 }
 
-#reference ul.technologies li {
+ul.technologies li {
   border-left: solid 1px;
   display: inline-block;
   line-height: 1em;
@@ -34,7 +34,7 @@ a:focus, a:hover {
   padding: 0 0 0 1em;
 }
 
-#reference ul.technologies li:first-child {
+ul.technologies li:first-child {
   border-left: 0;
   margin-left: 0;
   padding: 0;

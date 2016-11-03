@@ -15,6 +15,14 @@ for settings_file in glob.glob(os.path.join(BASE_DIR, 'application', 'settings_p
         tmp.update(json.load(config_file))
         server_settings = tmp
 
+# import stage settings
+tmp = server_settings.copy()
+tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', 'p', '.json')))
+server_settings = tmp
+
+with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
+
 # paths
 STATIC_ROOT = server_settings.get('STATIC_ROOT', os.path.join('static'))
 MEDIA_ROOT = server_settings.get('MEDIA_ROOT', os.path.join('media'))

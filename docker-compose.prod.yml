@@ -2,10 +2,11 @@ version: '2'
 services:
   app:
     build: .
+    environment:
+      - STAGE="p"
     volumes:
-      - nginx_html
-      - app_path
-      - var_path
+      - nginx_html:/var/www/html
+      - var_path:/var/local/application
     links:
       - postgres
     depends_on:
