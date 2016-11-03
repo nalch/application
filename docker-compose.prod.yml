@@ -18,6 +18,10 @@ services:
   postgres:
     image: postgres:9
     environment:
+      - POSTGRES_DB=application
+      - POSTGRES_USER=application
+      - POSTGRES_PASSWORD=application
+      - PGDATA=/var/local/application/application/pgdata
 
 volumes:
   app_path:
