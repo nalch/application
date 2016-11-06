@@ -6,4 +6,4 @@ services:
     ports:
       - "8500:8100"
     environment:
-      - STAGE="dev"
+      - STAGE=dev

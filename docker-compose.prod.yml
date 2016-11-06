@@ -3,7 +3,7 @@ services:
   app:
     image: nalch/application:latest
     environment:
-      - STAGE="p"
+      - STAGE=p
     volumes:
       - nginx_html:/var/www/html
       - conf_path:/etc/local/application/conf
@@ -30,6 +30,8 @@ volumes:
   var_path:
     external: true
   nginx_html:
+    external: true
+  conf_html:
     external: true
 
 networks:
