@@ -19,7 +19,7 @@ for settings_file in glob.glob(os.path.join(BASE_DIR, 'application', 'settings_p
 # import stage settings
 try:
     tmp = server_settings.copy()
-    tmp.update(json.load(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', STAGE, '.json')))
+    tmp.update(json.load(open(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', STAGE+'.json'))))
     server_settings = tmp
 except AttributeError:
     pass
