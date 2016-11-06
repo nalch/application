@@ -25,7 +25,7 @@ except AttributeError:
     pass
 
 try:
-    with open(os.path.join(BASE_DIR, 'secret_key')) as f:
+    with open(os.path.join('etc', 'local', 'nalch', 'application', 'config', 'secret_key')) as f:
         SECRET_KEY = f.read().strip()
 except IOError:
     SECRET_KEY = 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih'
