@@ -21,7 +21,7 @@ try:
     tmp = server_settings.copy()
     tmp.update(json.load(open(os.path.join(BASE_DIR, 'application', 'settings_pipeline', 'stages', STAGE+'.json'))))
     server_settings = tmp
-except AttributeError:
+except IOError:
     pass
 
 try:
