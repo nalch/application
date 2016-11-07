@@ -22,7 +22,9 @@ services:
       - POSTGRES_DB=application
       - POSTGRES_USER=application
       - POSTGRES_PASSWORD=application
-      - PGDATA=/var/local/application/application/pgdata
+      - PGDATA=/var/local/application/pgdata
+    volumes:
+      - var_path:/var/local/application
 
 volumes:
   app_path:
