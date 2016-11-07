@@ -1,3 +1,4 @@
+import errno
 import glob
 import json
 import os
@@ -105,7 +106,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 LOG_PATH = os.path.join('var', 'local', 'application', 'logs')
-os.makedirs(LOG_PATH, 0o755, True)
+try:
+    os.makedirs(LOG_PATH, 0o755)
+except OSError as exc:  # Python >2.5
+    if exc.errno == errno.EEXIST and os.path.isdir(LOG_PATH):
+        pass
+    else:
+        raise
 
 LOGGING = {
     'version': 1,
