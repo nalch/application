@@ -27,13 +27,13 @@ services:
       - application_var_path:/var/local/application
 
 volumes:
-  app_path:
+  application_app_path:
     external: true
-  var_path:
+  application_var_path:
     external: true
   nginx_html:
     external: true
-  conf_html:
+  application_conf_html:
     external: true
 
 networks:

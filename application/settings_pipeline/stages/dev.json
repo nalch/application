@@ -3,5 +3,14 @@
     "DEBUG": true,
     "TEMPLATE_DEBUG": true,
     "STATIC_ROOT": "static",
-    "MEDIA_ROOT": "media"
+    "MEDIA_ROOT": "media",
+    "DATABASES": {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "application",
+            "USER": "application",
+            "PASSWORD": "application",
+            "HOST": "postgres"
+        }
+    }
 }

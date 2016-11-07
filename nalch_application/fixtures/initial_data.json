@@ -56,7 +56,9 @@
     "fields": {
         "name": "Professional",
         "name_de": "Professionell",
-        "name_en": "Professional"
+        "name_en": "Professional",
+        "short_name_de": "Professionell",
+        "short_name_en": "Professional"
     },
     "model": "nalch_application.group",
     "pk": 1
@@ -64,7 +66,9 @@
     "fields": {
         "name": "Freetime",
         "name_de": "Freizeit",
-        "name_en": "Freetime"
+        "name_en": "Freetime",
+        "short_name_de": "Freizeit",
+        "short_name_en": "Freetime"
     },
     "model": "nalch_application.group",
     "pk": 2

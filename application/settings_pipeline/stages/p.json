@@ -1,5 +1,5 @@
 {
-    "ALLOWED_HOSTS": ["127.0.0.1", "localhost"],
+    "ALLOWED_HOSTS": ["*"],
     "DEBUG": false,
     "TEMPLATE_DEBUG": false,
     "STATIC_ROOT": "/var/www/html",

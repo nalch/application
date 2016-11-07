@@ -8,6 +8,21 @@ services:
     environment:
       - STAGE=dev
     volumes:
+      - .:/usr/src/app
       - ./static:/var/www/html
       - ./config:/etc/local/application/conf
+      - ./var:/var/local/application
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:9
+    environment:
+      - POSTGRES_DB=application
+      - POSTGRES_USER=application
+      - POSTGRES_PASSWORD=application
+      - PGDATA=/var/local/application/pgdata
+    volumes:
       - ./var:/var/local/application
