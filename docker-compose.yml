@@ -7,3 +7,7 @@ services:
       - "8500:8100"
     environment:
       - STAGE=dev
+    volumes:
+      - ./static:/var/www/html
+      - ./config:/etc/local/application/conf
+      - ./var:/var/local/application

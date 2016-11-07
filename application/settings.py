@@ -25,7 +25,7 @@ except IOError:
     pass
 
 try:
-    with open(os.path.join('etc', 'local', 'nalch', 'application', 'config', 'secret_key')) as f:
+    with open(os.path.join('etc', 'local', 'application', 'conf', 'secret_key')) as f:
         SECRET_KEY = f.read().strip()
 except IOError:
     SECRET_KEY = 'iqm3vsw@-9gva5de%8$04(i(a1&@4$jvedqjt3n7_b7uspv$ih'
@@ -103,3 +103,22 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/var/local/application/logs/application.log',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
