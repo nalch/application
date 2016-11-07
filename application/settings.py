@@ -104,6 +104,9 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+LOG_PATH = os.path.join('var', 'local', 'application', 'logs')
+os.makedirs(LOG_PATH, 0755)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -111,7 +114,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': '/var/local/application/logs/application.log',
+            'filename': LOG_PATH + '/application.log',
         },
     },
     'loggers': {
