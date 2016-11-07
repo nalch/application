@@ -105,7 +105,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 LOG_PATH = os.path.join('var', 'local', 'application', 'logs')
-os.makedirs(LOG_PATH, 0755)
+os.makedirs(LOG_PATH, 0o755, True)
 
 LOGGING = {
     'version': 1,
