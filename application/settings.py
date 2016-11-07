@@ -8,9 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 STAGE = os.environ.get('STAGE', 'dev')
-VAR_PATH = os.path.join(os.sep, 'var', 'local', 'application')
-CONF_PATH = os.path.join(os.sep, 'etc', 'local', 'application', 'conf')
-LOG_PATH = os.path.join(VAR_PATH, 'logs')
 
 # settings up settings pipeline
 server_settings = {}
@@ -27,6 +24,10 @@ try:
     server_settings = tmp
 except IOError:
     pass
+
+VAR_PATH = server_settings.get('VAR_PATH', os.path.join(os.sep, 'var', 'local', 'application'))
+CONF_PATH = server_settings.get('CONF_PATH', os.path.join(os.sep, 'etc', 'local', 'application', 'conf'))
+LOG_PATH = os.path.join(VAR_PATH, 'logs')
 
 try:
     with open(os.path.join(CONF_PATH, 'secret_key')) as f:

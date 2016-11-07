@@ -6,8 +6,8 @@ services:
       - STAGE=p
     volumes:
       - nginx_html:/var/www/html
-      - conf_path:/etc/local/application/conf
-      - var_path:/var/local/application
+      - application_conf_path:/etc/local/application/conf
+      - application_var_path:/var/local/application
     links:
       - postgres
     depends_on:
@@ -24,7 +24,7 @@ services:
       - POSTGRES_PASSWORD=application
       - PGDATA=/var/local/application/pgdata
     volumes:
-      - var_path:/var/local/application
+      - application_var_path:/var/local/application
 
 volumes:
   app_path:
