@@ -3,5 +3,7 @@
     "DEBUG": false,
     "TEMPLATE_DEBUG": false,
     "STATIC_ROOT": "static",
-    "MEDIA_ROOT": "media"
+    "MEDIA_ROOT": "media",
+    "VAR_PATH": "var",
+    "CONF_PATH": "conf"
 }
