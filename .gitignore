@@ -1,7 +1,7 @@
-media/
-var/
-config/
-static/
-backup
-db.sqlite3
+/media/
+/var/
+/config/
+/static/
+/backup/
+/db.sqlite3
 *.pyc
