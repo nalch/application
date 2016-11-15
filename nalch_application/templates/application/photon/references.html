@@ -184,7 +184,7 @@
 							<div class="4u 12u$(medium)">
 								<h3>{{ reference.name }}</h3>
 								<span class="image fit"><img src="{{ reference.title_thumbnail.url }}" alt="{{ reference.name }}"/></span>
-
+								<p>{{ current_reference.short_description|safe }}</p>
 								{% if reference.weightedtag_set.all|length > 0 %}
 									<p>
 									{% for weighted_tag in reference.weightedtag_set.all %}

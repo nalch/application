@@ -36,7 +36,7 @@ class ContactDetailTranslationOptions(TNMTranslationOptions):
 
 
 class ProjectTranslationOptions(TNMTranslationOptions):
-    fields = ('description', 'short_name', )
+    fields = ('description', 'short_description', 'short_name', )
 
 
 class ProjectImageTranslationOptions(TNMTranslationOptions):

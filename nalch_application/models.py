@@ -107,6 +107,7 @@ class Project(TranslatableNameMixin):
     model to represent projects with names, descriptions, images and tags
     """
     short_name = models.CharField(max_length=25, unique=True)
+    short_description = models.TextField(max_length=255, default='')
     description = models.TextField()
     title_thumbnail = models.ImageField()
     publish = models.BooleanField(default=True)
