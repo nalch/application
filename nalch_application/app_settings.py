@@ -35,9 +35,16 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     },
     'linux': {
         'devicon_css': 'devicon devicon-linux-plain',
+        'fontawesome_css': 'fa-linux',
     },
     'travis': {
-        'devicon_css': 'devicon devicon-travis-plain-wordmark',
+        'devicon_css': 'devicon devicon-travis-plain-wordmark colored',
+    },
+    'jenkins': {
+        'devicons_css': 'devicons devicons-jenkins style1',
+    },
+    'scrum': {
+        'devicons_css': 'devicons devicons-scrum',
     },
     'angularjs': {
         'devicon_css': 'devicon devicon-angularjs-plain-wordmark colored',
@@ -75,5 +82,9 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'terminal': {
         'fontawesome_css': 'fa-terminal',
     },
+    'windows': {
+        'fontawesome_css': 'fa-windows style2',
+    },
 })
-FONTICONS = filter(lambda icon: 'fontawesome_css' in ICONS[icon] or 'devicon_css' in ICONS[icon], ICONS)
+# filter all icons, that have usable fontawesome or devicon representations
+FONTICONS = filter(lambda icon: len(ICONS[icon]) > 0, ICONS)

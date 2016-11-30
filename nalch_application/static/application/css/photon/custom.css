@@ -18,6 +18,10 @@
   font-family: devicon;
 }
 
+.main.style2 ul.major-icons li .devicons::before {
+  font-family: devicons;
+}
+
 a:focus, a:hover {
   text-decoration: none;
 }
