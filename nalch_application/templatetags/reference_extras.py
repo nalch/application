@@ -64,6 +64,8 @@ def icon_css(iconmixin):
     """
     if iconmixin.icon in ICONS:
         icon = ICONS[iconmixin.icon]
+        if 'devicons_css' in icon:
+            return icon['devicons_css']
         if 'devicon_css' in icon:
             return icon['devicon_css']
         if 'fontawesome_css' in icon:

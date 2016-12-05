@@ -18,8 +18,24 @@
   font-family: devicon;
 }
 
+.main.style2 ul.major-icons li .devicons::before {
+  font-family: devicons;
+}
+
 a:focus, a:hover {
   text-decoration: none;
+}
+
+.row:not(:last-child):after {
+    padding-bottom: 3em;
+}
+
+.refsep {
+    border-left: 1px solid rgba(144, 144, 144, 0.5);
+    height: 300px;
+    margin-top: 50px;
+    padding: 0 !important;
+    width: 1px;
 }
 
 ul.technologies {
