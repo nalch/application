@@ -85,6 +85,39 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'windows': {
         'fontawesome_css': 'fa-windows style2',
     },
+    'jira': {
+        'devicons_css': 'devicons devicons-jira',
+    },
+    'python': {
+        'devicons_css': 'devicons devicons-python',
+    },
+    'css3': {
+        'devicons_css': 'devicons devicons-css3',
+    },
+    'redis': {
+        'devicons_css': 'devicons devicons-redis',
+    },
+    'postgresql': {
+        'devicons_css': 'devicons devicons-postgresql',
+    },
+    'debian': {
+        'devicons_css': 'devicons devicons-debian',
+    },
+    'mongodb': {
+        'devicons_css': 'devicons devicons-mongodb',
+    },
+    'aws': {
+        'devicons_css': 'devicons devicons-aws',
+    },
+    'docker': {
+        'devicons_css': 'devicons devicons-docker',
+    },
+    'openshift': {
+        'devicons_css': 'devicons devicons-openshift',
+    },
+    'google-cloud-platform': {
+        'devicons_css': 'devicons devicons-google-cloud-platform',
+    },
 })
 # filter all icons, that have usable fontawesome or devicon representations
 FONTICONS = filter(lambda icon: len(ICONS[icon]) > 0, ICONS)
