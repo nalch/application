@@ -62,8 +62,7 @@
 					<div class="row 150%">
 						<div class="6u 12u$(medium)">
 							<header class="major">
-								<h2>Lorem ipsum dolor adipiscing<br />
-								amet dolor consequat</h2>
+								<h2>{% trans 'Page overview' %}</h2>
 							</header>
 							<p>{% blocktrans %}
 								This page gives a brief overview over the projects I realized or worked on. Please use the overview to choose any interesting project
@@ -74,7 +73,7 @@
 						<div class="6u$ 12u$(medium) important(medium)">
 							<ul class="nav nav-pills nav-stacked">
 								<li class="nav-item">
-									<a class="nav-link" href="#reference">{% trans 'Show project: ' %}{{ current_reference.name }}</a>
+									<a class="nav-link" href="#reference">{% trans 'Show project' %}: {{ current_reference.name }}</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="#overview">{% trans 'Project overview' %}</a>
@@ -219,12 +218,16 @@
 			<section id="four" class="main style2 special">
 				<div class="container">
 					<header class="major">
-						<h2>Ipsum feugiat consequat?</h2>
+						<h2>{% trans 'Got interested?' %}</h2>
 					</header>
-					<p>Sed lacus nascetur ac ante amet sapien.</p>
+					<p>
+					{% blocktrans %}
+					If you got interested in getting some additional information about a specific project or myself, please contact me by any of the ways in the footer or write a mail.
+					{% endblocktrans %}
+					</p>
 					<ul class="actions uniform">
-						<li><a href="#" class="button special">Sign Up</a></li>
-						<li><a href="#" class="button">Learn More</a></li>
+						<li><a href="#footer" class="button special">{% trans 'See contact details' %}</a></li>
+						<li><a href="mailto: {{ applicant.user.email }}" class="button">{% trans 'Write mail' %}</a></li>
 					</ul>
 				</div>
 			</section>
