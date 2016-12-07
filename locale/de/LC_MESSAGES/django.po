@@ -5,18 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 17:33+0000\n"
-"PO-Revision-Date: 2016-02-08 20:11+0100\n"
+"POT-Creation-Date: 2016-12-07 11:04+0000\n"
+"PO-Revision-Date: 2016-12-07 12:09+0100\n"
 "Last-Translator: Kristian Scholze <Scholze.Kristian@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Language-Team: \n"
 
 #: application/settings.py:92
 msgid "German"
@@ -63,9 +63,13 @@ msgstr "Referenzen"
 msgid "Overview"
 msgstr "Überblick"
 
-#: nalch_application/templates/application/photon/references.html:53
+#: nalch_application/templates/application/photon/references.html:54
 msgid "Discover projects"
 msgstr "Projektübersicht"
+
+#: nalch_application/templates/application/photon/references.html:65
+msgid "Page overview"
+msgstr "Seitenübersicht"
 
 #: nalch_application/templates/application/photon/references.html:67
 msgid ""
@@ -77,50 +81,73 @@ msgid ""
 "tags.\n"
 "\t\t\t\t\t\t\t\t"
 msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\tDiese Seite enthält einen kurzen Abriss über die Projekte, "
+"die ich realisiert oder an denen ich maßgeblich beteiligt bin oder war. Über die "
+"Projektübersicht können Sie Details über einzelne relevante Projekte "
+"aufgrund der genutzten Technologien oder bearbeiteten Wissensgebiete "
+"aufrufen.\n"
+"\t\t\t\t\t\t\t\t"
 
 #: nalch_application/templates/application/photon/references.html:76
-msgid "Show project: "
-msgstr "Projektdetails: "
+msgid "Show project"
+msgstr "Projektdetails"
 
 #: nalch_application/templates/application/photon/references.html:79
-#, fuzzy
-#| msgid "Projects"
 msgid "Project overview"
-msgstr "Projekte"
+msgstr "Projektübersicht"
 
-#: nalch_application/templates/application/photon/references.html:121
+#: nalch_application/templates/application/photon/references.html:109
 #: nalch_application/templates/application/templatetags/reference.html:17
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: nalch_application/templates/application/photon/references.html:132
+#: nalch_application/templates/application/photon/references.html:120
 #: nalch_application/templates/application/templatetags/reference.html:28
 #: nalch_application/templates/application/templatetags/small_reference.html:17
 msgid "Tags"
 msgstr "Schlagworte"
 
-#: nalch_application/templates/application/photon/references.html:141
+#: nalch_application/templates/application/photon/references.html:129
 #: nalch_application/templates/application/templatetags/reference.html:37
 #: nalch_application/templates/application/templatetags/small_reference.html:26
 msgid "Technologies"
 msgstr "Technologien"
 
-#: nalch_application/templates/application/photon/references.html:152
+#: nalch_application/templates/application/photon/references.html:140
 msgid "Images"
 msgstr "Bilder"
 
-#: nalch_application/templates/application/photon/references.html:207
+#: nalch_application/templates/application/photon/references.html:196
 msgid "More"
 msgstr "Mehr"
 
-#: nalch_application/templates/application/references.html:12
-#, python-format
-msgid "This string will have %(mail)s inside."
+#: nalch_application/templates/application/photon/references.html:221
+msgid "Got interested?"
+msgstr "Interessiert?"
+
+#: nalch_application/templates/application/photon/references.html:224
+msgid ""
+"\n"
+"\t\t\t\t\tIf you got interested in getting some additional information about "
+"a specific project or myself, please contact me by any of the ways in the "
+"footer or write a mail.\n"
+"\t\t\t\t\t"
 msgstr ""
-"Dieser Text ersetzt %(mail)sDiese Seite enthält einen kurzen Abriss einiger "
-"Projekte, an deren Entwicklung ich beteiligt bin oder war. Natürlich freue "
-"ich mich sehr, konkretere Details <a href=\"mailto:%(mail)s\">per Mail</a> "
-"oder in einem persönlichen Gespräch zu erörtern."
+"\n"
+"\t\t\t\t\tInteressieren Sie sich für detailliertere Information über ein "
+"spezifisches Projekt oder meine Wissens- und Interessengebiete, würde ich "
+"mich freuen, wenn Sie mich über eine der im Footer der Seite genannten Arten "
+"oder per E-Mail kontaktieren oder zu einem persönlichen Gespräch einladen.\n"
+"\t\t\t\t\t"
+
+#: nalch_application/templates/application/photon/references.html:229
+msgid "See contact details"
+msgstr "Kontakte ansehen"
+
+#: nalch_application/templates/application/photon/references.html:230
+msgid "Write mail"
+msgstr "E-Mail schreiben"
 
 #: nalch_application/templates/application/references.html:18
 msgid "Projects"
@@ -131,7 +158,5 @@ msgid "Group"
 msgstr "Bereich"
 
 #: nalch_application/templates/application/templatetags/reference_table.html:11
-#, fuzzy
-#| msgid "Projects"
 msgid "Project"
-msgstr "Projekte"
+msgstr "Projekt"
