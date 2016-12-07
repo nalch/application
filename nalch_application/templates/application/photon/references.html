@@ -128,7 +128,7 @@
 								<p>
 								<h3>{% trans 'Technologies' %}</h3>
 								<ul class="technologies">
-								{% for tech in current_reference.technologies.all %}
+								{% for tech in current_reference.technologies.all|dictsort:"name" %}
 									<li>{{ tech }}</li>
 								{% endfor %}
 								</ul>
@@ -185,7 +185,7 @@
 								{% if reference.technologies.all|length > 0 %}
 									<p>
 									<ul class="technologies">
-									{% for tech in reference.technologies.all %}
+									{% for tech in reference.technologies.all|dictsort:"name" %}
 										<li>{{ tech }}</li>
 									{% endfor %}
 									</ul>
