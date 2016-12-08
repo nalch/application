@@ -110,7 +110,8 @@ Please use the overview to choose any interesting project regarding the used tec
                 <header class="major">
                     <h2>{{ current_reference.short_name }}</h2>
                 </header>
-                <p>{{ current_reference.description|safe }}</p>
+
+                {{ current_reference.description|safe }}
 
                 {% if current_reference.attachment_set.all|length > 0 %}
                     <p>

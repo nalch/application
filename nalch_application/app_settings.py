@@ -91,6 +91,9 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'python': {
         'devicons_css': 'devicons devicons-python',
     },
+    'django': {
+        'devicons_css': 'devicons devicons-django',
+    },
     'css3': {
         'devicons_css': 'devicons devicons-css3',
     },
