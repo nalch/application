@@ -7,266 +7,285 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<meta name="author" content="{{ applicant.user.first_name }} {{ applicant.user.last_name }}" >
-        <link rel="shortcut icon" href="{% static 'application/img/favicon.ico' %}">
+<head>
+    <meta name="author" content="{{ applicant.user.first_name }} {{ applicant.user.last_name }}">
+    <link rel="shortcut icon" href="{% static 'application/img/favicon.ico' %}">
 
-        <title>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</title>
+    <title>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</title>
 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!-- Bootstrap core CSS -->
-    	<link href="{% static 'application/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-		<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/html5shiv.js' %}"></script><![endif]-->
-		<link rel="stylesheet" href="{% static 'application/css/photon/main.css' %}" />
-        <link rel="stylesheet" href="{% static 'application/css/photon/devicon.min.css' %}">
-        <link rel="stylesheet" href="{% static 'application/css/photon/devicon-colors.css' %}">
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css">
-        <link rel="stylesheet" href="{% static 'application/css/photon/custom.css' %}" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'application/css/photon/ie8.css' %}" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'application/css/photon/ie9.css' %}" /><![endif]-->
-	</head>
-	<body>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'application/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!--[if lte IE 8]>
+    <script src="{% static 'application/js/photon/ie/html5shiv.js' %}"></script><![endif]-->
+    <link rel="stylesheet" href="{% static 'application/css/photon/main.css' %}"/>
+    <link rel="stylesheet" href="{% static 'application/css/photon/devicon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'application/css/photon/devicon-colors.css' %}">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css">
+    <link rel="stylesheet" href="{% static 'application/css/photon/custom.css' %}"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="{% static 'application/css/photon/ie8.css' %}"/><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="{% static 'application/css/photon/ie9.css' %}"/><![endif]-->
+</head>
+<body>
 
-		<!-- Header -->
-			<section id="header">
-				<div class="inner">
-					<form action="{% url 'set_language' %}" method="post" id="language-switcher" role="language" class="clearfix">{% csrf_token %}
-						<div class="form-group">
-							<input name="next" type="hidden" value="{{ redirect_to }}"/>
-							<input id="language" name="language" type="hidden" value="{{ language.code }}"/>
+<!-- Header -->
+<section id="header">
+    <div class="inner">
+        <form action="{% url 'set_language' %}" method="post" id="language-switcher" role="language" class="clearfix">{% csrf_token %}
+            <div class="form-group">
+                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                <input id="language" name="language" type="hidden" value="{{ language.code }}"/>
 
-							{% get_current_language as LANGUAGE_CODE %}
-							{% get_available_languages as LANGUAGES %}
-							{% get_language_info_list for LANGUAGES as languages %}
-							<ul class="navbar-right nav nav-pills nav-stacked">
-							{% for language in languages %}
-								<li class="language-link nav-item"><a class="nav-link" value="{{ language.code }}">{{ language.name_local }} ({{ language.code }})</a></li>
-							{% endfor %}
-							</ul>
-						</div>
-					</form>
-
-					<span class="icon major descriptionicon {% icon_css applicant.description %}"></span><br/>
-					{% render_template applicant.description.description applicant=applicant %}
-
-					<ul class="actions">
-						<li><a href="#overview" class="button scrolly">{% trans 'Discover projects' %}</a></li>
-					</ul>
-				</div>
-			</section>
-
-		<!-- One -->
-			<section id="one" class="main style1">
-				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<header class="major">
-								<h2>{% trans 'Page overview' %}</h2>
-							</header>
-							<p>{% blocktrans %}
-								This page gives a brief overview over the projects I realized or worked on. Please use the overview to choose any interesting project
-								regarding the used technologies or the areas covered by the tags.
-								{% endblocktrans %}
-							</p>
-						</div>
-						<div class="6u$ 12u$(medium) important(medium)">
-							<ul class="nav nav-pills nav-stacked">
-								<li class="nav-item">
-									<a class="nav-link" href="#reference">{% trans 'Show project' %}: {{ current_reference.name }}</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#overview">{% trans 'Project overview' %}</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#footer">{% trans 'Contact' %}</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-
-		<!-- Two -->
-			<section id="reference" class="main style2">
-				<div class="container">
-					<div class="row 150%">
-						<div class="6u 12u$(medium)">
-							<ul class="major-icons">
-								{% for technology in current_reference.icons.all %}
-								    <li><span class="{% icon_css technology %} icon major"></span></li>
-								{% endfor %}
-							</ul>
-						</div>
-						<div class="6u$ 12u$(medium)">
-							<header class="major">
-								<h2>{{ current_reference.short_name }}</h2>
-							</header>
-							<p>{{ current_reference.description|safe }}</p>
-
-							{% if current_reference.attachment_set.all|length > 0 %}
-								<p>
-		                        <h3>{% trans 'Attachments' %}</h3>
-        		                <ul>
-									{% for attachment in current_reference.attachment_set.all %}
-									<li><a href="{{ attachment.file.url }}">{{ attachment.name }}</a> ({{ attachment.file.size|filesizeformat }})</li>
-                            		{% endfor %}
-                        		</ul>
-								</p>
-                    		{% endif %}
-
-		                    {% if current_reference.weightedtag_set.all|length > 0 %}
-								<p>
-        		                <h3>{% trans 'Tags' %}</h3>
-								{% for weighted_tag in current_reference.weightedtag_set.all|sort:"tag.name" %}
-									<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
-								{% endfor %}
-								</p>
-                        	{% endif %}
-
-							{% if current_reference.technologies.all|length > 0 %}
-								<p>
-								<h3>{% trans 'Technologies' %}</h3>
-								<ul class="technologies">
-								{% for tech in current_reference.technologies.all|dictsort:"name" %}
-									<li>{{ tech }}</li>
-								{% endfor %}
-								</ul>
-								</p>
-							{% endif %}
-
-							{% if current_reference.images.all|length > 0 %}
-								<p>
-								<h3>{% trans 'Images' %}</h3>
-								<div class="inner gallery">
-									<div class="row 0%">
-										{% for image in current_reference.images.all %}
-											<div class="3u 12u(mobile)">
-												<a href="{{ image.image.url }}" title="{{ image.name }}" class="image">
-													<img src="{{ image.thumbnail.url }}" alt="{{ image.name }}" title="{{ image.name }}" />
-													<p class="caption">{{ image.name }}</p>
-												</a>
-											</div>
-										{% endfor %}
-									</div>
-								</div>
-								</p>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</section>
-
-		<!-- Three -->
-			<section id="overview" class="main style1 special">
-				<div class="container">
-					{% for group, grouped_references in references.iteritems %}
-						<header>
-							<h2>{{ group.name }}</h2>
-						</header>
-						<p>{{ group.description }}</p>
-
-						<div class="row 150%">
-
-						{% for reference in grouped_references %}
-							<div class="4u 12u$(medium) reference">
-								<h3>{{ reference.name }}</h3>
-								<span class="image fit"><img src="{{ reference.title_thumbnail.url }}" alt="{{ reference.name }}"/></span>
-								<p>{{ reference.short_description|safe }}</p>
-
-								{% if reference.weightedtag_set.all|length > 0 %}
-									<p>
-									{% for weighted_tag in reference.weightedtag_set.all|sort:"tag.name" %}
-										<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
-									{% endfor %}
-									</p>
-								{% endif %}
-
-								{% if reference.technologies.all|length > 0 %}
-									<p>
-									<ul class="technologies">
-									{% for tech in reference.technologies.all|dictsort:"name" %}
-										<li>{{ tech }}</li>
-									{% endfor %}
-									</ul>
-									</p>
-								{% endif %}
-
-								<ul class="actions">
-									<li><a href="{% url 'references' applicant.user.username reference.public_name %}#reference" class="button">{% trans 'More' %}</a></li>
-								</ul>
-							</div>
-
-							{% if not forloop.counter|divisibleby:3 and not forloop.last %}
-								<div class="refsep"></div>
-							{% endif %}
-
-							{% if forloop.counter|divisibleby:3 %}
-								{% if not forloop.last %}
-									</div>
-									<div class="row 150%">
-								{% endif %}
-							{% endif %}
-                        {% endfor %}
-
-                    	</div>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                <ul class="navbar-right nav nav-pills nav-stacked">
+                    {% for language in languages %}
+                        <li class="language-link nav-item">
+                            <a class="nav-link" value="{{ language.code }}">
+                                {{ language.name_local }} ({{ language.code }})
+                            </a>
+                        </li>
                     {% endfor %}
-				</div>
-			</section>
+                </ul>
+            </div>
+        </form>
 
-		<!-- Four -->
-			<section id="four" class="main style2 special">
-				<div class="container">
-					<header class="major">
-						<h2>{% trans 'Got interested?' %}</h2>
-					</header>
-					<p>
-					{% blocktrans %}
-					If you got interested in getting some additional information about a specific project or myself, please contact me by any of the ways in the footer or write a mail.
-					{% endblocktrans %}
-					</p>
-					<ul class="actions uniform">
-						<li><a href="#footer" class="button special">{% trans 'See contact details' %}</a></li>
-						<li><a href="mailto: {{ applicant.user.email }}" class="button">{% trans 'Write mail' %}</a></li>
-					</ul>
-				</div>
-			</section>
+        <span class="icon major descriptionicon {% icon_css applicant.description %}"></span><br/>
+        {% render_template applicant.description.description applicant=applicant %}
 
-		<!-- Footer -->
-			<section id="footer">
-				{% with applicant.contact_links as links %}
-				<p>
-					<ul class="icons">
-						{% for contact in links %}
-						  <li><a href="{% if contact.icon == 'envelope' %}mailto:{% endif %}{{ contact.name }}" class="icon {% icon_css contact %}"><span class="label"></span></a></li>
-						{% endfor %}
-					</ul>
-				</p>
-				<p>
-					<h4>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</h4>
-					<ul class="contactdetails">
-						<li class="icon fa-map-marker">{{ applicant.address }}</li>
-						{% for contact in applicant.contactdetail_set.all %}
-							{% if contact not in links %}
-							<li class="icon {% icon_css contact %}">{{ contact.name }}</li>
-							{% endif %}
-						{% endfor %}
-					</ul>
-				</p>
-				{% endwith %}
-				<ul class="copyright">
-					<li>&copy; Kristian Scholze 2016</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</section>
+        <ul class="actions">
+            <li><a href="#overview" class="button scrolly">{% trans 'Discover projects' %}</a></li>
+        </ul>
+    </div>
+</section>
 
-		<!-- Scripts -->
-			<script src="{% static 'application/js/photon/jquery.min.js' %}"></script>
-			<script src="{% static 'application/js/photon/jquery.scrolly.min.js' %}"></script>
-			<script src="{% static 'application/js/photon/jquery.poptrox.min.js' %}"></script>
-			<script src="{% static 'application/js/photon/skel.min.js' %}"></script>
-			<script src="{% static 'application/js/photon/util.js' %}"></script>
-			<!--[if lte IE 8]><script src="{% static 'application/js/photon/ie/respond.min.js' %}"></script><![endif]-->
-			<script src="{% static 'application/js/photon/main.js' %}"></script>
-			<script src="{% static 'application/js/photon/language-switcher.js' %}"></script>
-	</body>
+<!-- One -->
+<section id="one" class="main style1">
+    <div class="container">
+        <div class="row 150%">
+            <div class="6u 12u$(medium)">
+                <header class="major">
+                    <h2>{% trans 'Page overview' %}</h2>
+                </header>
+                <p>{% blocktrans %}This page gives a brief overview over the projects I realized or worked on.
+                    Please use the overview to choose any interesting project regarding the used technologies or the areas covered by the tags.
+                   {% endblocktrans %}
+                </p>
+            </div>
+            <div class="6u$ 12u$(medium) important(medium)">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="nav-item">
+                        <a class="nav-link scrolly" href="#reference">{% trans 'Show project' %}: {{ current_reference.name }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrolly" href="#overview">{% trans 'Project overview' %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrolly" href="#footer">{% trans 'Contact' %}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Two -->
+<section id="reference" class="main style2">
+    <div class="container">
+        <div class="row 150%">
+            <div class="6u 12u$(medium)">
+                <ul class="major-icons">
+                    {% for technology in current_reference.icons.all %}
+                        <li><span class="{% icon_css technology %} icon major"></span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="6u$ 12u$(medium)">
+                <header class="major">
+                    <h2>{{ current_reference.short_name }}</h2>
+                </header>
+                <p>{{ current_reference.description|safe }}</p>
+
+                {% if current_reference.attachment_set.all|length > 0 %}
+                    <p>
+                        <h3>{% trans 'Attachments' %}</h3>
+                        <ul>
+                            {% for attachment in current_reference.attachment_set.all %}
+                                <li>
+                                    <a href="{{ attachment.file.url }}">{{ attachment.name }}</a>
+                                    ({{ attachment.file.size|filesizeformat }})
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                {% endif %}
+
+                {% if current_reference.weightedtag_set.all|length > 0 %}
+                    <p>
+                        <h3>{% trans 'Tags' %}</h3>
+                        {% for weighted_tag in current_reference.weightedtag_set.all|sort:"tag.name" %}
+                            <span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+
+                {% if current_reference.technologies.all|length > 0 %}
+                    <p>
+                        <h3>{% trans 'Technologies' %}</h3>
+                        <ul class="technologies">
+                            {% for tech in current_reference.technologies.all|dictsort:"name" %}
+                                <li>{{ tech }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                {% endif %}
+
+                {% if current_reference.images.all|length > 0 %}
+                    <p>
+                        <h3>{% trans 'Images' %}</h3>
+                        <div class="inner gallery">
+                            <div class="row 0%">
+                                {% for image in current_reference.images.all %}
+                                    <div class="3u 12u(mobile)">
+                                        <a href="{{ image.image.url }}" title="{{ image.name }}" class="image">
+                                            <img src="{{ image.thumbnail.url }}" alt="{{ image.name }}" title="{{ image.name }}"/>
+                                            <p class="caption">{{ image.name }}</p>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Three -->
+<section id="overview" class="main style1 special">
+    <div class="container">
+        {% for group, grouped_references in references.iteritems %}
+            <header>
+                <h2>{{ group.name }}</h2>
+            </header>
+            <p>{{ group.description }}</p>
+
+            <div class="row 150%">
+
+                {% for reference in grouped_references %}
+                    <div class="4u 12u$(medium) reference">
+                        <h3>{{ reference.name }}</h3>
+                        <span class="image fit"><img src="{{ reference.title_thumbnail.url }}"
+                                                     alt="{{ reference.name }}"/></span>
+                        <p>{{ reference.short_description|safe }}</p>
+
+                        {% if reference.weightedtag_set.all|length > 0 %}
+                            <p>
+                                {% for weighted_tag in reference.weightedtag_set.all|sort:"tag.name" %}
+                                    <span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+
+                        {% if reference.technologies.all|length > 0 %}
+                            <p>
+                                <ul class="technologies">
+                                    {% for tech in reference.technologies.all|dictsort:"name" %}
+                                        <li>{{ tech }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        {% endif %}
+
+                        <ul class="actions">
+                            <li>
+                                <a href="{% url 'references' applicant.user.username reference.public_name %}#reference" class="button scrolly">
+                                    {% trans 'More' %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% if not forloop.counter|divisibleby:3 and not forloop.last %}
+                        <div class="refsep"></div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:3 %}
+                        {% if not forloop.last %}
+            </div>
+            <div class="row 150%">
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Four -->
+<section id="four" class="main style2 special">
+    <div class="container">
+        <header class="major">
+            <h2>{% trans 'Got interested?' %}</h2>
+        </header>
+        <p>
+            {% blocktrans %}If you got interested in getting some additional information about a specific project or myself,
+            please contact me by any of the ways in the footer or write a mail.{% endblocktrans %}
+        </p>
+        <ul class="actions uniform">
+            <li><a href="#footer" class="button special scrolly">{% trans 'See contact details' %}</a></li>
+            <li><a href="mailto: {{ applicant.user.email }}" class="button">{% trans 'Write mail' %}</a></li>
+        </ul>
+    </div>
+</section>
+
+<!-- Footer -->
+<section id="footer">
+    {% with applicant.contact_links as links %}
+        <p>
+            <ul class="icons">
+                {% for contact in links %}
+                    <li>
+                        <a href="{% if contact.icon == 'envelope' %}mailto:{% endif %}{{ contact.name }}" class="icon {% icon_css contact %}">
+                            <span class="label"></span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </p>
+        <p>
+            <h4>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</h4>
+            <ul class="contactdetails">
+                <li class="icon fa-map-marker">{{ applicant.address }}</li>
+                {% for contact in applicant.contactdetail_set.all %}
+                    {% if contact not in links %}
+                        <li class="icon {% icon_css contact %}">{{ contact.name }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </p>
+    {% endwith %}
+    <ul class="copyright">
+        <li>&copy; Kristian Scholze 2016</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+</section>
+
+<!-- Scripts -->
+<script src="{% static 'application/js/photon/jquery.min.js' %}"></script>
+<script src="{% static 'application/js/photon/jquery.scrolly.min.js' %}"></script>
+<script src="{% static 'application/js/photon/jquery.poptrox.min.js' %}"></script>
+<script src="{% static 'application/js/photon/skel.min.js' %}"></script>
+<script src="{% static 'application/js/photon/util.js' %}"></script>
+<!--[if lte IE 8]>
+<script src="{% static 'application/js/photon/ie/respond.min.js' %}"></script><![endif]-->
+<script src="{% static 'application/js/photon/main.js' %}"></script>
+<script src="{% static 'application/js/photon/language-switcher.js' %}"></script>
+</body>
 </html>
