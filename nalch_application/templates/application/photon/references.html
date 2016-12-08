@@ -81,7 +81,7 @@ Please use the overview to choose any interesting project regarding the used tec
             <div class="6u$ 12u$(medium) important(medium)">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="nav-item">
-                        <a class="nav-link scrolly" href="#reference">{% trans 'Show project' %}: {{ current_reference.name }}</a>
+                        <a class="nav-link scrolly" href="#reference">{% trans 'Show project' %}: {{ current_reference.short_name }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link scrolly" href="#overview">{% trans 'Project overview' %}</a>
@@ -108,7 +108,7 @@ Please use the overview to choose any interesting project regarding the used tec
             </div>
             <div class="6u$ 12u$(medium)">
                 <header class="major">
-                    <h2>{{ current_reference.short_name }}</h2>
+                    <h2>{{ current_reference.name }}</h2>
                 </header>
 
                 {{ current_reference.description|safe }}
