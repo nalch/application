@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-08 10:29+0000\n"
-"PO-Revision-Date: 2016-12-08 11:31+0100\n"
+"POT-Creation-Date: 2016-12-08 11:54+0000\n"
+"PO-Revision-Date: 2016-12-08 12:56+0100\n"
 "Last-Translator: Kristian Scholze <Scholze.Kristian@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -43,7 +43,7 @@ msgid "Home"
 msgstr "Home"
 
 #: nalch_application/templates/application/navigation.html:23
-#: nalch_application/templates/application/photon/references.html:87
+#: nalch_application/templates/application/photon/references.html:90
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -63,70 +63,85 @@ msgstr "Referenzen"
 msgid "Overview"
 msgstr "Überblick"
 
-#: nalch_application/templates/application/photon/references.html:59
+#: nalch_application/templates/application/photon/references.html:61
 msgid "Discover projects"
-msgstr "Projektübersicht"
+msgstr "Projekte entdecken"
 
-#: nalch_application/templates/application/photon/references.html:70
+#: nalch_application/templates/application/photon/references.html:72
 msgid "Page overview"
 msgstr "Seitenübersicht"
 
-#: nalch_application/templates/application/photon/references.html:72
+#: nalch_application/templates/application/photon/references.html:75
+#: nalch_application/templates/application/references.html:12
 msgid ""
-"This page gives a brief overview over the projects I realized or worked "
-"on.\n"
-"                    Please use the overview to choose any interesting "
-"project regarding the used technologies or the areas covered by the tags.\n"
-"                   "
+"\n"
+"This page gives a brief overview over the projects I realized or worked on.\n"
+"Please use the overview to choose any interesting project regarding the used "
+"technologies or the areas covered by the tags.\n"
 msgstr ""
+"\n"
 "Diese Seite enthält einen kurzen Abriss über die Projekte, die ich "
 "realisiert habe oder an denen ich maßgeblich beteiligt bin oder war. Über "
 "die Projektübersicht können Sie Details über einzelne relevante Projekte "
 "aufgrund der genutzten Technologien oder bearbeiteten Wissensgebiete "
-"aufrufen."
+"aufrufen.\n"
 
-#: nalch_application/templates/application/photon/references.html:80
+#: nalch_application/templates/application/photon/references.html:84
 msgid "Show project"
 msgstr "Projektdetails"
 
-#: nalch_application/templates/application/photon/references.html:84
+#: nalch_application/templates/application/photon/references.html:87
 msgid "Project overview"
 msgstr "Projektübersicht"
 
-#: nalch_application/templates/application/photon/references.html:114
+#: nalch_application/templates/application/photon/references.html:117
 #: nalch_application/templates/application/templatetags/reference.html:17
 msgid "Attachments"
 msgstr "Anhänge"
 
-#: nalch_application/templates/application/photon/references.html:127
+#: nalch_application/templates/application/photon/references.html:131
 #: nalch_application/templates/application/templatetags/reference.html:28
 #: nalch_application/templates/application/templatetags/small_reference.html:17
 msgid "Tags"
 msgstr "Schlagworte"
 
-#: nalch_application/templates/application/photon/references.html:136
+#: nalch_application/templates/application/photon/references.html:140
 #: nalch_application/templates/application/templatetags/reference.html:37
 #: nalch_application/templates/application/templatetags/small_reference.html:26
 msgid "Technologies"
 msgstr "Technologien"
 
-#: nalch_application/templates/application/photon/references.html:147
+#: nalch_application/templates/application/photon/references.html:151
 msgid "Images"
 msgstr "Bilder"
 
-#: nalch_application/templates/application/photon/references.html:205
+#: nalch_application/templates/application/photon/references.html:210
 msgid "More"
 msgstr "Mehr"
 
-#: nalch_application/templates/application/photon/references.html:230
+#: nalch_application/templates/application/photon/references.html:237
 msgid "Got interested?"
 msgstr "Interessiert?"
 
-#: nalch_application/templates/application/photon/references.html:237
+#: nalch_application/templates/application/photon/references.html:240
+msgid ""
+"\n"
+"            If you got interested in getting some additional information "
+"about a specific project or myself,\n"
+"            please contact me by any of the ways in the footer or write a "
+"mail."
+msgstr ""
+"\n"
+"Interessieren Sie sich für detailliertere Information über ein spezifisches "
+"Projekt oder meine Wissens- und Interessengebiete, würde ich mich freuen, "
+"wenn Sie mich über eine der im Footer der Seite genannten Arten oder per E-"
+"Mail kontaktieren oder zu einem persönlichen Gespräch einladen."
+
+#: nalch_application/templates/application/photon/references.html:245
 msgid "See contact details"
 msgstr "Kontakte ansehen"
 
-#: nalch_application/templates/application/photon/references.html:238
+#: nalch_application/templates/application/photon/references.html:246
 msgid "Write mail"
 msgstr "E-Mail schreiben"
 
@@ -141,14 +156,3 @@ msgstr "Bereich"
 #: nalch_application/templates/application/templatetags/reference_table.html:11
 msgid "Project"
 msgstr "Projekt"
-
-#~ msgid ""
-#~ "This page gives a brief overview over the projects I realized or worked "
-#~ "on. Please use the overview to choose any interesting project regarding "
-#~ "the used technologies or the areas covered by the tags."
-#~ msgstr ""
-#~ "Diese Seite enthält einen kurzen Abriss über die Projekte, die ich "
-#~ "realisiert oder an denen ich maßgeblich beteiligt bin oder war. Über die "
-#~ "Projektübersicht können Sie Details über einzelne relevante Projekte "
-#~ "aufgrund der genutzten Technologien oder bearbeiteten Wissensgebiete "
-#~ "aufrufen."

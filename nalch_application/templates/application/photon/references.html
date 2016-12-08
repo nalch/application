@@ -71,9 +71,11 @@
                 <header class="major">
                     <h2>{% trans 'Page overview' %}</h2>
                 </header>
-                <p>{% blocktrans %}This page gives a brief overview over the projects I realized or worked on.
-                    Please use the overview to choose any interesting project regarding the used technologies or the areas covered by the tags.
-                   {% endblocktrans %}
+                <p>
+{% blocktrans with mail=applicant.user.email %}
+This page gives a brief overview over the projects I realized or worked on.
+Please use the overview to choose any interesting project regarding the used technologies or the areas covered by the tags.
+{% endblocktrans %}
                 </p>
             </div>
             <div class="6u$ 12u$(medium) important(medium)">
@@ -235,7 +237,8 @@
             <h2>{% trans 'Got interested?' %}</h2>
         </header>
         <p>
-            {% blocktrans %}If you got interested in getting some additional information about a specific project or myself,
+            {% blocktrans %}
+            If you got interested in getting some additional information about a specific project or myself,
             please contact me by any of the ways in the footer or write a mail.{% endblocktrans %}
         </p>
         <ul class="actions uniform">
