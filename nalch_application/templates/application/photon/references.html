@@ -118,7 +118,7 @@
 		                    {% if current_reference.weightedtag_set.all|length > 0 %}
 								<p>
         		                <h3>{% trans 'Tags' %}</h3>
-								{% for weighted_tag in current_reference.weightedtag_set.all %}
+								{% for weighted_tag in current_reference.weightedtag_set.all|sort:"tag.name" %}
 									<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
 								{% endfor %}
 								</p>
@@ -176,7 +176,7 @@
 
 								{% if reference.weightedtag_set.all|length > 0 %}
 									<p>
-									{% for weighted_tag in reference.weightedtag_set.all %}
+									{% for weighted_tag in reference.weightedtag_set.all|sort:"tag.name" %}
 										<span class="label label-default" style="background: {{ weighted_tag.tag.color }}">{{ weighted_tag.tag }}</span>
 									{% endfor %}
 									</p>
