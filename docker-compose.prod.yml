@@ -1,7 +1,7 @@
 version: '2'
 services:
   app:
-    image: nalch/application:v1.1
+    image: nalch/application:v1.2
     environment:
       - STAGE=p
     volumes:
