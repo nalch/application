@@ -22,7 +22,11 @@
     <link rel="stylesheet" href="{% static 'application/css/photon/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'application/css/photon/devicon.min.css' %}">
     <link rel="stylesheet" href="{% static 'application/css/photon/devicon-colors.css' %}">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css">
+
+    <!-- cdn version is not up to date -->
+    <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css">-->
+    <link rel="stylesheet" href="{% static 'application/css/photon/devicons.min.css' %}">
+
     <link rel="stylesheet" href="{% static 'application/css/photon/custom.css' %}"/>
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="{% static 'application/css/photon/ie8.css' %}"/><![endif]-->
@@ -81,7 +85,7 @@ Please use the overview to choose any interesting project regarding the used tec
             <div class="6u$ 12u$(medium) important(medium)">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="nav-item">
-                        <a class="nav-link scrolly" href="#reference">{% trans 'Show project' %}: {{ current_reference.name }}</a>
+                        <a class="nav-link scrolly" href="#reference">{% trans 'Show project' %}: {{ current_reference.short_name }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link scrolly" href="#overview">{% trans 'Project overview' %}</a>
@@ -108,7 +112,7 @@ Please use the overview to choose any interesting project regarding the used tec
             </div>
             <div class="6u$ 12u$(medium)">
                 <header class="major">
-                    <h2>{{ current_reference.short_name }}</h2>
+                    <h2>{{ current_reference.name }}</h2>
                 </header>
 
                 {{ current_reference.description|safe }}
@@ -243,8 +247,8 @@ Please use the overview to choose any interesting project regarding the used tec
             please contact me by any of the ways in the footer or write a mail.{% endblocktrans %}
         </p>
         <ul class="actions uniform">
-            <li><a href="#footer" class="button special scrolly">{% trans 'See contact details' %}</a></li>
             <li><a href="mailto: {{ applicant.user.email }}" class="button">{% trans 'Write mail' %}</a></li>
+            <li><a href="#footer" class="button special scrolly">{% trans 'See contact details' %}</a></li>
         </ul>
     </div>
 </section>

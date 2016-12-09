@@ -121,6 +121,9 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'google-cloud-platform': {
         'devicons_css': 'devicons devicons-google-cloud-platform',
     },
+    'bootstrap': {
+        'devicons_css': 'devicons devicons-bootstrap',
+    },
 })
 # filter all icons, that have usable fontawesome or devicon representations
 FONTICONS = filter(lambda icon: len(ICONS[icon]) > 0, ICONS)
