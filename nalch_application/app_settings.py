@@ -83,6 +83,7 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
         'fontawesome_css': 'fa-terminal',
     },
     'windows': {
+        'devicon_css': 'devicon devicon-windows8-original colored',
         'fontawesome_css': 'fa-windows style2',
     },
     'jira': {
@@ -92,28 +93,28 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
         'devicons_css': 'devicons devicons-python',
     },
     'django': {
-        'devicons_css': 'devicons devicons-django',
+        'devicon_css': 'devicon devicon-django-plain colored',
     },
     'css3': {
-        'devicons_css': 'devicons devicons-css3',
+        'devicon_css': 'devicon devicon-css3-plain colored',
     },
     'redis': {
         'devicons_css': 'devicons devicons-redis',
     },
     'postgresql': {
-        'devicons_css': 'devicons devicons-postgresql',
+        'devicon_css': 'devicon devicon-postgresql-plain colored',
     },
     'debian': {
         'devicons_css': 'devicons devicons-debian',
     },
     'mongodb': {
-        'devicons_css': 'devicons devicons-mongodb',
+        'devicon_css': 'devicon devicon-mongodb-plain-wordmark colored',
     },
     'aws': {
-        'devicons_css': 'devicons devicons-aws',
+        'devicons_css': 'devicon devicon-amazonwebservices-original colored',
     },
     'docker': {
-        'devicons_css': 'devicons devicons-docker',
+        'devicon_css': 'devicon devicon-docker-plain colored',
     },
     'openshift': {
         'devicons_css': 'devicons devicons-openshift',
@@ -122,7 +123,10 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
         'devicons_css': 'devicons devicons-google-cloud-platform',
     },
     'bootstrap': {
-        'devicons_css': 'devicons devicons-bootstrap',
+        'devicon_css': 'devicon devicon-bootstrap-plain colored',
+    },
+    'php': {
+        'devicon_css': 'devicon devicon-php-plain colored',
     },
 })
 # filter all icons, that have usable fontawesome or devicon representations
