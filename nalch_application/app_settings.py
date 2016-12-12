@@ -98,6 +98,9 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'css3': {
         'devicon_css': 'devicon devicon-css3-plain colored',
     },
+    'cpp': {
+        'devicon_css': 'devicon devicon-cplusplus-plain colored',
+    },
     'redis': {
         'devicons_css': 'devicons devicons-redis',
     },
