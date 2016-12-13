@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta name="author" content="{{ applicant.user.first_name }} {{ applicant.user.last_name }}">
+        <link rel="shortcut icon" href="{% static 'application/img/favicon.ico' %}">
+
+        <title>{{ applicant.user.first_name }} {{ applicant.user.last_name }}</title>
+
+        <meta charset="utf-8"/>
+    </head>
+
+    <body>
+        {% for group, grouped_references in references.iteritems %}
+            <h2>{{ group.name }}</h2>
+            <p>{{ group.description }}</p>
+
+            {% for reference in grouped_references %}
+                <h3>{{ reference.name }}</h3>
+                <p>{{ reference.short_description|safe }}</p>
+                <p>{{ reference.description|safe }}</p>
+            {% endfor %}
+        {% endfor %}
+    </body>
+</html>

@@ -3,6 +3,7 @@ from django.conf import settings
 
 TEMPLATES = getattr(settings, 'NALCH_APPLICATION_TEMPLATES', [
     'photon',
+    'simpletext',
 ])
 
 ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
