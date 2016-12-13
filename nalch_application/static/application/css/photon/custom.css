@@ -22,6 +22,14 @@
   font-family: devicons;
 }
 
+.main.style2 ul.major-icons li .color-red {
+  color: #ff0000;
+}
+
+.main.style2 ul.major-icons li .color-jira {
+  color: #205081;
+}
+
 a:focus, a:hover {
   text-decoration: none;
 }
