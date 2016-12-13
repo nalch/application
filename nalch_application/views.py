@@ -4,7 +4,8 @@ from django.shortcuts import (
     render_to_response
 )
 from django.template import RequestContext
-from django.template.loader import select_template
+# for future use
+# from django.template.loader import select_template
 
 from itertools import chain
 
