@@ -87,13 +87,16 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
         'fontawesome_css': 'fa-windows style2',
     },
     'jira': {
-        'devicons_css': 'devicons devicons-jira',
+        'devicons_css': 'devicons devicons-jira color-jira',
+    },
+    'confluence': {
+        'devicon_css': 'devicon devicon-confluence-plain-wordmark colored',
     },
     'python': {
-        'devicons_css': 'devicons devicons-python',
+        'devicons_css': 'devicon devicon-python-plain-wordmark colored',
     },
     'django': {
-        'devicon_css': 'devicon devicon-django-plain colored',
+        'devicon_css': 'devicon devicon-django-plain',
     },
     'css3': {
         'devicon_css': 'devicon devicon-css3-plain colored',
@@ -120,7 +123,7 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
         'devicon_css': 'devicon devicon-docker-plain colored',
     },
     'openshift': {
-        'devicons_css': 'devicons devicons-openshift',
+        'devicons_css': 'devicons devicons-openshift color-red',
     },
     'google-cloud-platform': {
         'devicons_css': 'devicons devicons-google-cloud-platform',
