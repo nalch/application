@@ -59,7 +59,8 @@ def index(request, applicant):
     :return: rendered template as HttpResponse
     :rtype: HttpResponse
     """
-    # for future use: template = select_template(['application/%s/index.htm' % applicant.username, 'application/index.html'])
+    # for future use:
+    #   template = select_template(['application/%s/index.htm' % applicant.template, 'application/index.html'])
     context = get_shared_context(request, applicant)
     return render_to_response(
             'application/%s/index.html' % context['applicant'].template,
@@ -89,8 +90,8 @@ def contact(request, applicant):
 
 def references(request, applicant, reference):
     """
-    render reference view with common context and a current detailed reference. Template is application/<applicant.template>/references.html or the
-    default application/references.html
+    render reference view with common context and a current detailed reference.
+    Template is application/<applicant.template>/references.html or the default application/references.html
     :param request: HTTPRequest
     :type request: HttpRequest
     :param applicant: The current applicant
