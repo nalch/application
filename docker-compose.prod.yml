@@ -15,6 +15,11 @@ services:
     networks:
       default: {}
       nginx-net: {}
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: 3
 
   postgres:
     image: postgres:9
@@ -25,6 +30,11 @@ services:
       - PGDATA=/var/local/application/pgdata
     volumes:
       - application_var_path:/var/local/application
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: 3
 
 volumes:
   application_app_path:
