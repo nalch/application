@@ -17,6 +17,21 @@ from nalch_application.models import (
 
 
 def get_shared_context(request, applicant, active='index'):
+    """
+    collects common information about an applicant and stores them in the context
+    Information:
+        active -> active page
+        applicant -> current applicant
+        references -> the applicant's published references
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: the current applicant's name
+    :type applicant: str
+    :param active: active page, default: index
+    :type active: str
+    :return: the common context (keys: active, applicant, references)
+    :rtype: dict
+    """
     get_object_or_404(Applicant, user__username=applicant)
     projects = Project.objects.filter(publish=True, user__user__username=applicant)
     # get all groups for all references, flatten the list using itertools and remove duplicates
@@ -34,23 +49,58 @@ def get_shared_context(request, applicant, active='index'):
 
 
 def index(request, applicant):
-    # template = select_template(['application/%s/index.htm' % applicant.username, 'application/index.html'])
+    """
+    render index view with common context. Template is application/<applicant.template>/index.html or the default
+    application/index.html
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: The current applicant
+    :type applicant: str
+    :return: rendered template as HttpResponse
+    :rtype: HttpResponse
+    """
+    # for future use:
+    #   template = select_template(['application/%s/index.htm' % applicant.template, 'application/index.html'])
+    context = get_shared_context(request, applicant)
     return render_to_response(
-            'application/index.html',
-            get_shared_context(request, applicant),
+            'application/%s/index.html' % context['applicant'].template,
+            context,
             context_instance=RequestContext(request)
     )
 
 
 def contact(request, applicant):
+    """
+    render contact view with common context. Template is application/<applicant.template>/contact.html or the default
+    application/contact.html
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: The current applicant
+    :type applicant: str
+    :return: rendered template as HttpResponse
+    :rtype: HttpResponse
+    """
+    context = get_shared_context(request, applicant, 'contact')
     return render_to_response(
-            'application/contact.html',
-            get_shared_context(request, applicant, 'contact'),
+            'application/%s/contact.html' % context['applicant'].template,
+            context,
             context_instance=RequestContext(request)
     )
 
 
 def references(request, applicant, reference):
+    """
+    render reference view with common context and a current detailed reference.
+    Template is application/<applicant.template>/references.html or the default application/references.html
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: The current applicant
+    :type applicant: str
+    :param reference: The current reference project
+    :type reference: Project
+    :return: rendered template as HttpResponse
+    :rtype: HttpResponse
+    """
     context = get_shared_context(request, applicant, 'references')
     current_ref = Project.objects.filter(publish=True, user__user__username=applicant, short_name_en=reference).first()
     if current_ref is None:
@@ -68,6 +118,17 @@ def references(request, applicant, reference):
 
 
 def areasofinterest(request, applicant):
+    """
+    render areasofinterest view with common context and the applicant's areas of interest (key: areas).
+    Template is application/<applicant.template>/areas.html or the
+    default application/areas.html
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: The current applicant
+    :type applicant: str
+    :return: rendered template as HttpResponse
+    :rtype: HttpResponse
+    """
     context = get_shared_context(request, applicant, 'areasofinterest')
     context.update(
             {
@@ -75,13 +136,24 @@ def areasofinterest(request, applicant):
             }
     )
     return render_to_response(
-            'application/areas.html',
+            'application/%s/areas.html' % context['applicant'].template,
             context,
             context_instance=RequestContext(request)
     )
 
 
 def areasofexpertise(request, applicant):
+    """
+    render areasofexpertise view with common context and the applicant's areas of expertise (key: areas).
+    Template is application/<applicant.template>/areas.html or the
+    default application/areas.html
+    :param request: HTTPRequest
+    :type request: HttpRequest
+    :param applicant: The current applicant
+    :type applicant: str
+    :return: rendered template as HttpResponse
+    :rtype: HttpResponse
+    """
     context = get_shared_context(request, applicant, 'areasofexpertise')
     context.update(
             {
@@ -89,7 +161,7 @@ def areasofexpertise(request, applicant):
             }
     )
     return render_to_response(
-            'application/areas.html',
+            'application/%s/areas.html' % context['applicant'].template,
             context,
             context_instance=RequestContext(request)
     )
