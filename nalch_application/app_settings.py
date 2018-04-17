@@ -135,6 +135,12 @@ ICONS = getattr(settings, 'NALCH_APPLICATION_ICONS', {
     'php': {
         'devicon_css': 'devicon devicon-php-plain colored',
     },
+    'webpack': {
+        'devicon_css': 'devicon devicon-webpack-plain colored',
+    },
+    'babel': {
+        'devicon_css': 'devicon devicon-babel-plain colored',
+    },
 })
 # filter all icons, that have usable fontawesome or devicon representations
 FONTICONS = filter(lambda icon: len(ICONS[icon]) > 0, ICONS)
